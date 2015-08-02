@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripPartner.Web", "TripPartner.Web\TripPartner.Web.csproj", "{D54FDC39-A8A7-4B8E-B9ED-78D7B6A7C2FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripPartner.WebAPI", "TripPartner.WebAPI\TripPartner.WebAPI.csproj", "{2826CE6D-69DB-437A-81A9-88E2100C6CFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D54FDC39-A8A7-4B8E-B9ED-78D7B6A7C2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54FDC39-A8A7-4B8E-B9ED-78D7B6A7C2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54FDC39-A8A7-4B8E-B9ED-78D7B6A7C2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54FDC39-A8A7-4B8E-B9ED-78D7B6A7C2FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2826CE6D-69DB-437A-81A9-88E2100C6CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2826CE6D-69DB-437A-81A9-88E2100C6CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2826CE6D-69DB-437A-81A9-88E2100C6CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2826CE6D-69DB-437A-81A9-88E2100C6CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
