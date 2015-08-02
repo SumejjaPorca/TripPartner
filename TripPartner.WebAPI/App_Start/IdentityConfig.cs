@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using TripPartner.WebAPI.Models;
+using TripPartner.WebAPI.Data;
 
 namespace TripPartner.WebAPI
 {

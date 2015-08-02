@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using TripPartner.WebAPI.Providers;
 using TripPartner.WebAPI.Models;
+using TripPartner.WebAPI.Data;
 
 namespace TripPartner.WebAPI
 {
