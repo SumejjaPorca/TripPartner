@@ -7,7 +7,7 @@
 
     <title>TripPartner</title>
     <!-- Loading style sheets -->
-    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/bootstrap.css" rel="stylesheet" />
     <link href="Content/css/site.css" rel="stylesheet" />
     <link href="Content/css/loading-bar.css" rel="stylesheet" />
     
@@ -15,72 +15,73 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded"></button>
-                <a class="navbar-brand" href="#/home">Home</a>
-                <a class="navbar-brand" href="#/stories">Stories</a>
-            </div>
-            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
-                <ul class="nav navbar-nav navbar-right">
-                    <!--<li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
-                    <li data-ng-hide="!authentication.isAuth"><a href="#/orders">My Orders</a></li>
-                    <li data-ng-hide="!authentication.isAuth"><a href="#/refresh">Refresh Token</a></li>
-                    <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>-->
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="jumbotron">
-        <div class="container">
-            <div class="page-header text-center">
-                <h1>TripPartner</h1>
-            </div>
-            <p>AngularJS Application which uses OAuth Bearer Token for authentication and implements Refresh Tokens. The backend API is built using ASP.NET Web API 2, OWIN middleware, and ASP.NET Identity.</p>
-            <p>Original version created by Taiseer Joudeh. Twitter: <a target="_blank" href="http://twitter.com/tjoudeh">@tjoudeh</a></p>
-        </div>
-    </div>
-    <div class="container">
-        <div ui-view="">
-        </div>
-    </div>
-    <hr />
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="text-muted">Modified to MongoDb by Attila Hajdrik. Twitter: <a target="_blank" href="http://twitter.com/attilah">@attilah</a></p>
+    <div ng-controller="indexCtrl">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded"></button>
+                    <a class="navbar-brand" href="#/home">Home</a>
+                    <a class="navbar-brand" href="#/stories">Stories</a>
                 </div>
-                <div class="col-md-6">
-                    <p class="text-muted">Homepage: <a target="_blank" href="http://www.eyedea.hu">www.eyedea.hu</a></p>
+                <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li data-ng-hide="!isLoggedIn"><a href="#">Welcome {{currentUser.userName}}</a></li>
+                        <!--<li data-ng-hide="!authentication.isAuth"><a href="#/orders">My Orders</a></li>
+                        <li data-ng-hide="!authentication.isAuth"><a href="#/refresh">Refresh Token</a></li>
+                        <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>-->
+                        <li data-ng-hide="isLoggedIn"> <a href="#/login">Login</a></li>
+                        <li data-ng-hide="isLoggedIn"> <a href="#/register">Register</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div class="page-header text-center">
+                    <h1>TripPartner</h1>
+                </div>
+                <p class="text-center">A place to find your best traveling buddy!</p>
+                </div>
+        </div>
+        <div class="container">
+            <div ui-view="">
+            </div>
+        </div>
+        <hr />
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-muted">Modified to MongoDb by Attila Hajdrik. Twitter: <a target="_blank" href="http://twitter.com/attilah">@attilah</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-muted">Homepage: <a target="_blank" href="http://www.eyedea.hu">www.eyedea.hu</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 3rd party libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+        <!-- Load app main script -->
+        <script src="app/app.js?v=1"></script>
+
+        <!-- Load services -->
+        <!-- Load components -->
+        <!-- Account module -->
+        <script src="app/components/account/app.account.js"></script>
+        <script src="app/components/account/controllers/loginCtrl.js"></script>
+        <script src="app/components/account/controllers/registerCtrl.js"></script>
+
+        <!-- Home module -->
+        <script src="app/components/home/app.home.js"></script>
+
+        <!-- Stories module -->
+        <script src="app/components/stories/app.stories.js"></script>
+
+        <!-- Load custom filters -->
+        <!-- Load custom directives -->
     </div>
-    <!-- 3rd party libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-
-    <!-- Load app main script -->
-    <script src="app/app.js?v=1"></script>
-
-    <!-- Load services -->
-    <!-- Load components -->
-    <!-- Account module -->
-    <script src="app/components/account/app.account.js"></script>
-    <script src="app/components/account/controllers/loginCtrl.js"></script>
-    <script src="app/components/account/controllers/registerCtrl.js"></script>
-
-    <!-- Home module -->
-    <script src="app/components/home/app.home.js"></script>
-
-    <!-- Stories module -->
-    <script src="app/components/stories/app.stories.js"></script>
-
-    <!-- Load custom filters -->
-    <!-- Load custom directives -->
 </body>
 </html>

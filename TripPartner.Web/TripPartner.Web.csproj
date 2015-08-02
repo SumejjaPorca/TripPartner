@@ -75,7 +75,7 @@
     <Content Include="app\components\home\partials\home.html" />
     <Content Include="app\components\stories\app.stories.js" />
     <Content Include="app\components\stories\partials\stories.html" />
-    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\loading-bar.css" />
     <Content Include="Content\css\loading-bar.min.css">
       <DependentUpon>loading-bar.css</DependentUpon>

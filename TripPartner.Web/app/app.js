@@ -8,6 +8,10 @@
                         
                      }
                      ])
+                     .controller('indexCtrl', function ($scope) {
+                         $scope.isLoggedIn = false;
+                         $scope.currentUser = undefined;
+                     })
                      .run(function () {
                          alert('I am in app.js!');
                      });
