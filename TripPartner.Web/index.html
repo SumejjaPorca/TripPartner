@@ -25,12 +25,12 @@
                 </div>
                 <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
                     <ul class="nav navbar-nav navbar-right">
-                        <li data-ng-hide="!isLoggedIn"><a href="#">Welcome {{currentUser.userName}}</a></li>
+                        <li data-ng-hide="mngr.getCurrentUser() == undefined"><a href="#">Welcome {{mngr.getCurrentUser().Username}}</a></li>
                         <!--<li data-ng-hide="!authentication.isAuth"><a href="#/orders">My Orders</a></li>
                         <li data-ng-hide="!authentication.isAuth"><a href="#/refresh">Refresh Token</a></li>
                         <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>-->
-                        <li data-ng-hide="isLoggedIn"> <a href="#/login">Login</a></li>
-                        <li data-ng-hide="isLoggedIn"> <a href="#/register">Register</a></li>
+                        <li data-ng-hide="mngr.getCurrentUser() != undefined"> <a href="#/login">Login</a></li>
+                        <li data-ng-hide="mngr.getCurrentUser() != undefined"> <a href="#/register">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,10 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="text-muted">Modified to MongoDb by Attila Hajdrik. Twitter: <a target="_blank" href="http://twitter.com/attilah">@attilah</a></p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-muted">Homepage: <a target="_blank" href="http://www.eyedea.hu">www.eyedea.hu</a></p>
+                        <p class="text-muted"> Bachelor thesis, made by: Sumejja Porča 
                     </div>
                 </div>
             </div>
@@ -74,6 +71,11 @@
         <script src="app/components/account/app.account.js"></script>
         <script src="app/components/account/controllers/loginCtrl.js"></script>
         <script src="app/components/account/controllers/registerCtrl.js"></script>
+        <script src="app/components/account/services/AccountManager.js"></script>
+        <script src="app/components/account/services/User.js"></script>
+        <script src="app/components/account/scripts/angular-local-storage.js"></script>
+        <script src="app/components/account/services/authInterceptor.js"></script>
+
 
         <!-- Home module -->
         <script src="app/components/home/app.home.js"></script>

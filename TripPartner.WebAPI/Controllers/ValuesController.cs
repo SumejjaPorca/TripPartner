@@ -4,11 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace TripPartner.WebAPI.Controllers
 {
     [Authorize]
-    public class ValuesController : ApiController
+   public class ValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

@@ -16,12 +16,13 @@ using Microsoft.Owin.Security.OAuth;
 using TripPartner.WebAPI.Models;
 using TripPartner.WebAPI.Providers;
 using TripPartner.WebAPI.Results;
+using System.Web.Http.Cors;
 
 namespace TripPartner.WebAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+   public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
@@ -264,7 +265,7 @@ namespace TripPartner.WebAPI.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Email);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
