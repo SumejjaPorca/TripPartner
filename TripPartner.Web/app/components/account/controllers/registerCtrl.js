@@ -1,8 +1,10 @@
 ﻿(function (account) {
 
-    account.controller('registerCtrl',['$scope', 'AccountManager', function ($scope, mngr) {
+    account.controller('registerCtrl',['$scope', 'AccountManager', '$timeout', '$state', function ($scope, mngr, $timeout, $state) {
        
         $scope.registerModel = {};
+        $scope.message = "";
+        $scope.success = false;
 
         init();
 
@@ -15,9 +17,27 @@
         }
 
         $scope.register = function () {
-            mngr.Register(registerModel).success(//TO DO: something
+            mngr.Register($scope.registerModel).then(
+                function (response) {
+                    $scope.success = true;
+                    $scope.message = "You have successfully registered.";
+                    changeState(2000, 'login');
+                },
+                function (response) {
+                    $scope.success = false;
+                    $scope.message = "Failed to register";
+
+                }
                 );
         };
+
+
+        var changeState = function (millis, state) {
+            var timer = $timeout(function () {
+                $timeout.cancel(timer);
+                $state.go(state);
+            }, millis);
+        }
 
     }]);
 

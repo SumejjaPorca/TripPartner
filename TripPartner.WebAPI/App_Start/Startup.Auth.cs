@@ -11,6 +11,9 @@ using Owin;
 using TripPartner.WebAPI.Providers;
 using TripPartner.WebAPI.Models;
 using TripPartner.WebAPI.Data;
+using System.Web.Cors;
+using Microsoft.Owin.Cors;
+using System.Threading.Tasks;
 
 
 namespace TripPartner.WebAPI
@@ -25,7 +28,25 @@ namespace TripPartner.WebAPI
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            var corsPolicy = new CorsPolicy
+            {
+                AllowAnyMethod = true,
+                AllowAnyHeader = true
+            };
+
+            corsPolicy.Origins.Add("http://localhost:9017");
+
+
+            var corsOptions = new CorsOptions
+            {
+                PolicyProvider = new CorsPolicyProvider
+                {
+                    PolicyResolver = context => Task.FromResult(corsPolicy)
+                }
+            };
+
+
+            app.UseCors(corsOptions); //Microsoft.Owin.Cors.CorsOptions.AllowAll
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);

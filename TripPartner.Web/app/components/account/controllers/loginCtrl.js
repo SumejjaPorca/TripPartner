@@ -15,12 +15,12 @@
         $scope.login = function () {
             mngr.Login($scope.loginModel).then(
                 function (response) {
-                    alert('yaaay, we did it!');
-                    $state.go('home');
-                }, function (err) {
-                    $scope.message = err.error_description;
+                   $state.go('home');
+                }, function (response) {
+                    $scope.message = response.data.error_description;
                 });
         }
+
 
     }]);
 

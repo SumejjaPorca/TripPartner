@@ -14,8 +14,18 @@
 
                      .controller('indexCtrl', ['$scope', 'AccountManager', function ($scope, mngr) {
                          $scope.mngr = mngr;
+                         var j = 45;
                      }])
-                     .run(function () {
+                   .directive('myNavbar', function() {
+                       return {
+                           restrict: 'E',
+                           scope: {
+                               mngr: '=accountManager'
+                           },
+                           templateUrl: '/app/directives/my-navbar.html'
+                         };
+                     })
+                   .run(function () {
                          alert('I am in app.js!');
                      });
 

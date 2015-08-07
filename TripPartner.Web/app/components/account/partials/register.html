@@ -2,9 +2,9 @@
     <h2 class="form-login-heading">Register</h2>
     <input type="text" class="form-control" placeholder="Email" data-ng-model="registerModel.email" required autofocus>
     <input type="password" class="form-control" placeholder="Password" data-ng-model="registerModel.password" required>
-    <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="register.confirmPassword" required>
+    <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registerModel.confirmPassword" required>
     <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="register()">Submit</button>
-    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+    <div data-ng-hide="message == ''" data-ng-class="(success) ? 'alert alert-success' : 'alert alert-danger'">
         {{message}}
     </div>
 </form>

@@ -12,14 +12,15 @@
                 method: "POST",
                 data: 'grant_type=password&username=' + loginModel.username + '&password=' + loginModel.password
             }).then(function (response) {
+                loginModel.email = response.data.email;
                 setCurrentUser(loginModel);
-                localStorageService.set('authorizationData', { token: response.access_token, username: loginModel.username });
+                localStorageService.set('authorizationData', { token: response.data.access_token, username: loginModel.username });
                 deferred.resolve(response);
             }, 
-            function (err) {
+            function (response) {
                 currentUser = undefined;
                 localStorageService.set('authorizationData', { token: "", username: "" });
-                deferred.reject(err);
+                deferred.reject(response);
             });
 
             return deferred.promise;
@@ -28,8 +29,23 @@
             localStorageService.set('authorizationData', { token: "", username: "" });
             currentUser = undefined;
         };
-        this.Register = function (registerModel) { //TO DO: this
+        this.Register = function (registerModel) { 
+            var deferred = $q.defer();
 
+            $http({
+                url: 'http://' + serverName + '/api/Account/Register',
+                method: "POST",
+                data: 'email=' + registerModel.email + '&password=' + registerModel.password + '&confirmPassword=' + registerModel.confirmPassword
+            }).then(function (response) {
+                 deferred.resolve(response);
+            },
+            function (response) {
+                currentUser = undefined;
+                localStorageService.set('authorizationData', { token: "", username: "" });
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
         };
         this.getCurrentUser = function () {
             return currentUser;
