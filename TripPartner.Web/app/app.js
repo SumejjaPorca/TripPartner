@@ -20,9 +20,16 @@
                        return {
                            restrict: 'E',
                            scope: {
-                               mngr: '=accountManager'
+                               mngr: '=accountManager',
+                               
                            },
-                           templateUrl: '/app/directives/my-navbar.html'
+                           templateUrl: '/app/directives/my-navbar.html',
+                           controller: function ($scope) {
+                               $scope.clickMe = function () {
+                                   alert('Hello' + $scope.mngr);
+                               }
+
+                           }  
                          };
                      })
                    .run(function () {

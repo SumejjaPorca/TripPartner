@@ -3,6 +3,12 @@
     module.service('AccountManager', ['User', '$http', 'serverName', '$q', 'localStorageService', function (User, $http, serverName, $q, localStorageService) {
         var currentUser = undefined;
 
+        var init = function () {
+            currentUser = new User("", "", "");
+        }
+
+        init();
+
         this.Login = function (loginModel) {
 
             var deferred = $q.defer();
@@ -18,7 +24,7 @@
                 deferred.resolve(response);
             }, 
             function (response) {
-                currentUser = undefined;
+                currentUser.IsLoggedIn = false;
                 localStorageService.set('authorizationData', { token: "", username: "" });
                 deferred.reject(response);
             });
@@ -27,7 +33,7 @@
         };
         this.Logout = function () {
             localStorageService.set('authorizationData', { token: "", username: "" });
-            currentUser = undefined;
+            currentUser.IsLoggedIn = false;
         };
         this.Register = function (registerModel) { 
             var deferred = $q.defer();
@@ -40,7 +46,7 @@
                  deferred.resolve(response);
             },
             function (response) {
-                currentUser = undefined;
+                currentUser.IsLoggedIn = false;
                 localStorageService.set('authorizationData', { token: "", username: "" });
                 deferred.reject(response);
             });
@@ -51,7 +57,10 @@
             return currentUser;
         };
         var setCurrentUser = function (loginModel) {
-            currentUser = new User(loginModel);
+            currentUser.Username = loginModel.username;
+            currentUser.Email = loginModel.email;
+            currentUser.Password = loginModel.password;
+            currentUser.IsLoggedIn = true;
         }
     }]);
 
