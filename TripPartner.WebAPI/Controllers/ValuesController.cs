@@ -5,12 +5,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using TripPartner.WebAPI.Data;
 
 namespace TripPartner.WebAPI.Controllers
 {
     [Authorize]
    public class ValuesController : ApiController
-    {
+   {
+        private ApplicationDbContext _db = new ApplicationDbContext();
+        
         // GET api/values
         public IEnumerable<string> Get()
         {
