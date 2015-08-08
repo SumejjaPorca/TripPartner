@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using TripPartner.WebAPI.Domain_Models;
+using System.Collections.Generic;
 
 namespace TripPartner.WebAPI.Models
 {
@@ -16,6 +18,10 @@ namespace TripPartner.WebAPI.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+
+        public virtual ICollection<Story> Stories { get; set; }
+ 
     }
 
   
