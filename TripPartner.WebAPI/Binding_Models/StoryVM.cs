@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using TripPartner.WebAPI.Models;
 
-namespace TripPartner.WebAPI.View_Models
+namespace TripPartner.WebAPI.Binding_Models
 {
     public class StoryVM
     {
@@ -20,8 +20,10 @@ namespace TripPartner.WebAPI.View_Models
         public DateTime Date { get; set; }
         [DisplayName("Text")]
         public string Text { get; set; }
-        [DisplayName("Creator")]
-        public ApplicationUser Creator { get; set; }
+        [DisplayName("Creator Id")]
+        public string CreatorId { get; set; }
+        [DisplayName("Creator Username")]
+        public string CreatorUsername { get; set; }
         [DisplayName("Trip")]
         public TripVM Trip { get; set; }
     }

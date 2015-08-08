@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using TripPartner.WebAPI.Domain_Models;
 
-namespace TripPartner.WebAPI.View_Models
+namespace TripPartner.WebAPI.Binding_Models
 {
     public class TripVM
     {
@@ -22,8 +22,6 @@ namespace TripPartner.WebAPI.View_Models
         [DisplayName("Creator Username")]
         public string CreatorUsername { get; set; }
         
-        [DisplayName("Is cancelled")]
-        public bool IsCancelled { get; set; }
         [DisplayName("Destination")]
         public LocationVM Destination { get; set; }
         [DisplayName("Origin")]
