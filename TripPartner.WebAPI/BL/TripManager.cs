@@ -8,6 +8,7 @@ using TripPartner.WebAPI.Domain_Models;
 using TripPartner.WebAPI.Models;
 using System.Data.Entity.Spatial;
 using System.Globalization;
+using TripPartner.WebAPI.Exceptions;
 
 namespace TripPartner.WebAPI.BL
 {
@@ -18,87 +19,90 @@ namespace TripPartner.WebAPI.BL
         {
             _db = db;
         }
-       public TripVM getById(int id){
-           var query = from t in _db.Trips
-                       join o in _db.Locations on t.OriginId equals o.Id
-                       join d in _db.Locations on t.DestinationId equals d.Id
-                       join c in _db.Users on t.CreatorId equals c.Id
-                       where t.Id == id
-                       select new TripVM
-                       {
-                           Id = t.Id,
-                           Destination = new LocationVM { 
-                               Address = d.Address,
-                               Lat = d.LatLng.Latitude.Value,
-                               Long = d.LatLng.Longitude.Value
-                           },
-                           Origin = new LocationVM
-                           {
-                               Address = o.Address,
-                               Lat = o.LatLng.Latitude.Value,
-                               Long = o.LatLng.Longitude.Value
-                           },
-                           CreatorId = c.Id,
-                           CreatorUsername = c.UserName
-                       };
+        public TripVM getById(int id)
+        {
+            var query = from t in _db.Trips
+                        join o in _db.Locations on t.OriginId equals o.Id
+                        join d in _db.Locations on t.DestinationId equals d.Id
+                        join c in _db.Users on t.CreatorId equals c.Id
+                        where t.Id == id
+                        select new TripVM
+                        {
+                            Id = t.Id,
+                            Destination = new LocationVM
+                            {
+                                Address = d.Address,
+                                Lat = d.LatLng.Latitude.Value,
+                                Long = d.LatLng.Longitude.Value
+                            },
+                            Origin = new LocationVM
+                            {
+                                Address = o.Address,
+                                Lat = o.LatLng.Latitude.Value,
+                                Long = o.LatLng.Longitude.Value
+                            },
+                            CreatorId = c.Id,
+                            CreatorUsername = c.UserName
+                        };
 
-           TripVM trip = query.FirstOrDefault();
-           if (trip == null)
-               throw new Exception("Trip with id = " + id + " was not found.");
+            TripVM trip = query.FirstOrDefault();
+            if (trip == null)
+                throw new TripNotFoundException(id);
 
-           return trip;
-       }
+            return trip;
+        }
 
-       public List<TripVM> getByUserId(string id)
-       {
-           var user = getUser(id);
+        public List<TripVM> getByUserId(string id)
+        {
+            var user = getUser(id);
 
-           var query = from t in _db.Trips
-                       join o in _db.Locations on t.OriginId equals o.Id
-                       join d in _db.Locations on t.DestinationId equals d.Id
-                       where t.CreatorId == id
-                       select new TripVM
-                       {
-                           Id = t.Id,
-                           Destination = new LocationVM
-                           {
-                               Address = d.Address,
-                               Lat = d.LatLng.Latitude.Value,
-                               Long = d.LatLng.Longitude.Value
-                           },
-                           Origin = new LocationVM
-                           {
-                               Address = o.Address,
-                               Lat = o.LatLng.Latitude.Value,
-                               Long = o.LatLng.Longitude.Value
-                           },
-                           CreatorId = id,
-                           CreatorUsername = user.UserName
-                       };
+            var query = from t in _db.Trips
+                        join o in _db.Locations on t.OriginId equals o.Id
+                        join d in _db.Locations on t.DestinationId equals d.Id
+                        where t.CreatorId == id
+                        select new TripVM
+                        {
+                            Id = t.Id,
+                            Destination = new LocationVM
+                            {
+                                Address = d.Address,
+                                Lat = d.LatLng.Latitude.Value,
+                                Long = d.LatLng.Longitude.Value
+                            },
+                            Origin = new LocationVM
+                            {
+                                Address = o.Address,
+                                Lat = o.LatLng.Latitude.Value,
+                                Long = o.LatLng.Longitude.Value
+                            },
+                            CreatorId = id,
+                            CreatorUsername = user.UserName
+                        };
 
-           return query.ToList();
-       }
+            return query.ToList();
+        }
 
-       public TripVM NewTrip(NewTripVM trip)
-       {
-           var user = getUser(trip.CreatorId);
+        public TripVM NewTrip(NewTripVM trip)
+        {
+            var user = getUser(trip.CreatorId);
 
-           var dest = getLocation(trip.Destination);
-           var origin = getLocation(trip.Origin);
+            var dest = getLocation(trip.Destination);
+            var origin = getLocation(trip.Origin);
 
-           if (dest == null)
-             dest = _db.Locations.Add(new Location
-               {
-                   LatLng = CreatePoint(trip.Destination.Lat, trip.Destination.Long)
-               });
+            if (dest == null)
+                dest = _db.Locations.Add(new Location
+                {
+                    LatLng = CreatePoint(trip.Destination.Lat, trip.Destination.Long)
+                });
 
-           if(origin == null)
-               origin = _db.Locations.Add(new Location{
-                   LatLng = CreatePoint(trip.Origin.Lat, trip.Origin.Long)
-               });
+            if (origin == null)
+                origin = _db.Locations.Add(new Location
+                {
+                    LatLng = CreatePoint(trip.Origin.Lat, trip.Origin.Long)
+                });
 
-         
-            var t =  _db.Trips.Add(
+
+            var t = _db.Trips.Add(
                new Trip
                {
                    Creator = user,
@@ -111,20 +115,21 @@ namespace TripPartner.WebAPI.BL
             return new TripVM
             {
                 Id = t.Id,
-                Destination = new LocationVM{Id = dest.Id, Lat = dest.LatLng.Latitude.Value, Long = dest.LatLng.Longitude.Value},
-                Origin = new LocationVM{Id = origin.Id, Lat = origin.LatLng.Latitude.Value, Long = origin.LatLng.Longitude.Value},
+                Destination = new LocationVM { Id = dest.Id, Lat = dest.LatLng.Latitude.Value, Long = dest.LatLng.Longitude.Value },
+                Origin = new LocationVM { Id = origin.Id, Lat = origin.LatLng.Latitude.Value, Long = origin.LatLng.Longitude.Value },
                 CreatorId = user.Id,
                 CreatorUsername = user.UserName,
                 DateEnded = t.DateEnded,
                 DateStarted = t.DateStarted
             };
-       }
+        }
 
-        private ApplicationUser getUser(string id){
-           var user = _db.Users.FirstOrDefault(u => u.Id == id);
-           if (user == null)
-               throw new Exception("User with id = " + id + " was not found.");
-           return user;
+        private ApplicationUser getUser(string id)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+                throw new UserNotFoundException(id);
+            return user;
         }
 
         private Location getLocation(NewLocVM loc)

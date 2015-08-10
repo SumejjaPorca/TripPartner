@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TripPartner.WebAPI.Data;
 using TripPartner.WebAPI.Binding_Models;
+using TripPartner.WebAPI.Exceptions;
 
 namespace TripPartner.WebAPI.BL
 {
@@ -55,17 +56,17 @@ namespace TripPartner.WebAPI.BL
 
             StoryVM story = query.FirstOrDefault();
             if (story == null)
-                throw new Exception("Story with id = " + id + " was not found.");
+                throw new StoryNotFoundException(id);
 
             return story;
- 
+
         }
 
         public List<StoryVM> getByUserId(string id)
         {
             var user = _db.Users.FirstOrDefault(u => u.Id == id);
             if (user == null)
-                throw new Exception("User with id = " + id + " was not found.");
+                throw new UserNotFoundException(id);
 
             var query = from s in _db.Stories
                         join t in _db.Trips on s.TripId equals t.Id
@@ -103,6 +104,11 @@ namespace TripPartner.WebAPI.BL
                         };
 
             return query.ToList();
+        }
+
+        public StoryVM newStory(NewStoryVM story)
+        { //to do: this
+            throw new NotImplementedException();
         }
     }
 }

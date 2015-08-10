@@ -21,7 +21,7 @@ namespace TripPartner.WebAPI.Binding_Models
         public string CreatorId { get; set; }
         [DisplayName("Creator Username")]
         public string CreatorUsername { get; set; }
-        
+
         [DisplayName("Destination")]
         public LocationVM Destination { get; set; }
         [DisplayName("Origin")]

@@ -218,6 +218,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Binding_Models\NewLocVM.cs" />
+    <Compile Include="Binding_Models\NewStoryVM.cs" />
+    <Compile Include="Binding_Models\NewTripVM.cs" />
     <Compile Include="BL\StoryManager.cs" />
     <Compile Include="BL\TripManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -226,6 +228,9 @@
     <Compile Include="Domain_Models\Location.cs" />
     <Compile Include="Domain_Models\Story.cs" />
     <Compile Include="Domain_Models\Trip.cs" />
+    <Compile Include="Exceptions\StoryNotFoundException.cs" />
+    <Compile Include="Exceptions\TripNotFoundException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -238,7 +243,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Binding_Models\LocationVM.cs" />
-    <Compile Include="Binding_Models\NewTripVM.cs" />
     <Compile Include="Binding_Models\StoryVM.cs" />
     <Compile Include="Binding_Models\TripVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

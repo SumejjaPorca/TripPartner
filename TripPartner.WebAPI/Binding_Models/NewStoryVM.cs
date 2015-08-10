@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using TripPartner.WebAPI.Models;
 
 namespace TripPartner.WebAPI.Binding_Models
 {
-    public class StoryVM
+    public class NewStoryVM
     {
-
-        [DisplayName("Story Id")]
-        public int Id { get; set; }
         [DisplayName("Story made")]
         public DateTime DateMade { get; set; }
 
@@ -19,13 +16,18 @@ namespace TripPartner.WebAPI.Binding_Models
         public DateTime LastEdit { get; set; }
         [DisplayName("Story date")]
         public DateTime Date { get; set; }
+
+        [Required]
         [DisplayName("Text")]
         public string Text { get; set; }
+
         [DisplayName("Creator Id")]
         public string CreatorId { get; set; }
-        [DisplayName("Creator Username")]
-        public string CreatorUsername { get; set; }
-        [DisplayName("Trip")]
-        public TripVM Trip { get; set; }
+
+
+
+        [Required]
+        [DisplayName("TripId")]
+        public int TripId { get; set; }
     }
 }
