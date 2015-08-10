@@ -14,8 +14,7 @@
                      }
                      ])
                      .run(function () {
-                         alert('I am in app.stories.js!');
-                     })
+                             })
                     .controller("storiesCtrl", function ($scope) {
 
                     });

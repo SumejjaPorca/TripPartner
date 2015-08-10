@@ -22,6 +22,8 @@ namespace TripPartner.WebAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    //[EnableCors(origins: "http://localhost:9017", headers: "*", methods: "*")]
+
    public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
@@ -373,6 +375,8 @@ namespace TripPartner.WebAPI.Controllers
             }
             return Ok();
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

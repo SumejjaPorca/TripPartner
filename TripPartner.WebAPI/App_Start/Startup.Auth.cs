@@ -32,6 +32,7 @@ namespace TripPartner.WebAPI
             {
                 AllowAnyMethod = true,
                 AllowAnyHeader = true
+                
             };
 
             corsPolicy.Origins.Add("http://localhost:9017");

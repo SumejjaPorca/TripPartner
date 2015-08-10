@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.Spatial;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
 namespace TripPartner.WebAPI.Domain_Models
 {
@@ -15,7 +15,7 @@ namespace TripPartner.WebAPI.Domain_Models
         public int Id { get; set; }
         [DisplayName("Address")]
         public string Address { get; set; }
-        public System.Spatial.GeographyPoint LatLng { get; set; }
+        public DbGeography LatLng { get; set; }
         [InverseProperty("Origin")] 
         public virtual ICollection<Trip> TripsFrom { get; set; } //this location
         [InverseProperty("Destination")] 

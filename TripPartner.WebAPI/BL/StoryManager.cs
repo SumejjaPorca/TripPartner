@@ -33,14 +33,14 @@ namespace TripPartner.WebAPI.BL
                                 Destination = new LocationVM
                                 {
                                     Address = d.Address,
-                                    Lat = d.LatLng.Latitude,
-                                    Long = d.LatLng.Longitude
+                                    Lat = d.LatLng.Latitude.Value,
+                                    Long = d.LatLng.Longitude.Value
                                 },
                                 Origin = new LocationVM
                                 {
                                     Address = o.Address,
-                                    Lat = o.LatLng.Latitude,
-                                    Long = o.LatLng.Longitude
+                                    Lat = o.LatLng.Latitude.Value,
+                                    Long = o.LatLng.Longitude.Value
                                 },
                                 CreatorId = u.Id,
                                 CreatorUsername = u.UserName
@@ -82,14 +82,14 @@ namespace TripPartner.WebAPI.BL
                                 Destination = new LocationVM
                                 {
                                     Address = d.Address,
-                                    Lat = d.LatLng.Latitude,
-                                    Long = d.LatLng.Longitude
+                                    Lat = d.LatLng.Latitude.Value,
+                                    Long = d.LatLng.Longitude.Value
                                 },
                                 Origin = new LocationVM
                                 {
                                     Address = o.Address,
-                                    Lat = o.LatLng.Latitude,
-                                    Long = o.LatLng.Longitude
+                                    Lat = o.LatLng.Latitude.Value,
+                                    Long = o.LatLng.Longitude.Value
                                 },
                                 CreatorId = u.Id,
                                 CreatorUsername = u.UserName

@@ -22,10 +22,10 @@ namespace TripPartner.WebAPI.Domain_Models
         public string CreatorId { get; set; }
         [ForeignKey("CreatorId")]
         public ApplicationUser Creator { get; set; }
-        public int DestinationId { get; set; }
+        public int? DestinationId { get; set; }
          [ForeignKey("DestinationId")]
          public Location Destination { get; set; }
-         public int OriginId { get; set; }
+         public int? OriginId { get; set; }
          [ForeignKey("OriginId")]
          public Location Origin { get; set; }
         public virtual ICollection<Story> Stories { get; set; }

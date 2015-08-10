@@ -6,7 +6,8 @@ using TripPartner.WebAPI.Data;
 using TripPartner.WebAPI.Binding_Models;
 using TripPartner.WebAPI.Domain_Models;
 using TripPartner.WebAPI.Models;
-using System.Spatial;
+using System.Data.Entity.Spatial;
+using System.Globalization;
 
 namespace TripPartner.WebAPI.BL
 {
@@ -28,14 +29,14 @@ namespace TripPartner.WebAPI.BL
                            Id = t.Id,
                            Destination = new LocationVM { 
                                Address = d.Address,
-                               Lat = d.LatLng.Latitude,
-                               Long = d.LatLng.Longitude
+                               Lat = d.LatLng.Latitude.Value,
+                               Long = d.LatLng.Longitude.Value
                            },
                            Origin = new LocationVM
                            {
                                Address = o.Address,
-                               Lat = o.LatLng.Latitude,
-                               Long = o.LatLng.Longitude
+                               Lat = o.LatLng.Latitude.Value,
+                               Long = o.LatLng.Longitude.Value
                            },
                            CreatorId = c.Id,
                            CreatorUsername = c.UserName
@@ -62,14 +63,14 @@ namespace TripPartner.WebAPI.BL
                            Destination = new LocationVM
                            {
                                Address = d.Address,
-                               Lat = d.LatLng.Latitude,
-                               Long = d.LatLng.Longitude
+                               Lat = d.LatLng.Latitude.Value,
+                               Long = d.LatLng.Longitude.Value
                            },
                            Origin = new LocationVM
                            {
                                Address = o.Address,
-                               Lat = o.LatLng.Latitude,
-                               Long = o.LatLng.Longitude
+                               Lat = o.LatLng.Latitude.Value,
+                               Long = o.LatLng.Longitude.Value
                            },
                            CreatorId = id,
                            CreatorUsername = user.UserName
@@ -88,12 +89,12 @@ namespace TripPartner.WebAPI.BL
            if (dest == null)
              dest = _db.Locations.Add(new Location
                {
-                   LatLng = GeographyPoint.Create(trip.Destination.Lat, trip.Destination.Long)
+                   LatLng = CreatePoint(trip.Destination.Lat, trip.Destination.Long)
                });
 
            if(origin == null)
                origin = _db.Locations.Add(new Location{
-                   LatLng = GeographyPoint.Create(trip.Origin.Lat, trip.Origin.Long)
+                   LatLng = CreatePoint(trip.Origin.Lat, trip.Origin.Long)
                });
 
          
@@ -110,8 +111,8 @@ namespace TripPartner.WebAPI.BL
             return new TripVM
             {
                 Id = t.Id,
-                Destination = new LocationVM{Id = dest.Id, Lat = dest.LatLng.Latitude, Long = dest.LatLng.Longitude},
-                Origin = new LocationVM{Id = origin.Id, Lat = origin.LatLng.Latitude, Long = origin.LatLng.Longitude},
+                Destination = new LocationVM{Id = dest.Id, Lat = dest.LatLng.Latitude.Value, Long = dest.LatLng.Longitude.Value},
+                Origin = new LocationVM{Id = origin.Id, Lat = origin.LatLng.Latitude.Value, Long = origin.LatLng.Longitude.Value},
                 CreatorId = user.Id,
                 CreatorUsername = user.UserName,
                 DateEnded = t.DateEnded,
@@ -129,6 +130,15 @@ namespace TripPartner.WebAPI.BL
         private Location getLocation(NewLocVM loc)
         {
             return _db.Locations.FirstOrDefault(l => l.LatLng.Latitude == loc.Lat && l.LatLng.Longitude == loc.Long);
+        }
+
+        public DbGeography CreatePoint(double latitude, double longitude)
+        {
+            var text = string.Format(CultureInfo.InvariantCulture.NumberFormat, "POINT({0} {1})", longitude, latitude);
+            // 4326 is most common coordinate system used by GPS/Maps
+            return DbGeography.PointFromText(text, 4326);
+
+
         }
     }
 }

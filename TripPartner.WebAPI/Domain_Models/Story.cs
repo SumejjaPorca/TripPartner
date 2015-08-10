@@ -25,7 +25,7 @@ namespace TripPartner.WebAPI.Domain_Models
         public string CreatorId { get; set; }
         [ForeignKey("CreatorId")]
         public ApplicationUser Creator { get; set; }
-        public int TripId { get; set; }
+        public int? TripId { get; set; }
         [ForeignKey("TripId")]
         public Trip Trip { get; set; }
 

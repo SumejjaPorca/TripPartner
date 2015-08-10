@@ -21,7 +21,6 @@
                      }
                      ])
                      .run(function () {
-                         alert('I am in app.account.js!');
                      });
 
 })();

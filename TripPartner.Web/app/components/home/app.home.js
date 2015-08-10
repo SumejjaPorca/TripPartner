@@ -14,7 +14,7 @@
                      }
                      ])
                      .run(function () {
-                         alert('I am in app.home.js!');
+                        
                      })
                     .controller("homeCtrl", function ($scope) {
 
