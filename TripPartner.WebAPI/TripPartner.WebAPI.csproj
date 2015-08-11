@@ -220,6 +220,7 @@
     <Compile Include="Binding_Models\NewLocVM.cs" />
     <Compile Include="Binding_Models\NewStoryVM.cs" />
     <Compile Include="Binding_Models\NewTripVM.cs" />
+    <Compile Include="BL\LocationManager.cs" />
     <Compile Include="BL\StoryManager.cs" />
     <Compile Include="BL\TripManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Domain_Models\Location.cs" />
     <Compile Include="Domain_Models\Story.cs" />
     <Compile Include="Domain_Models\Trip.cs" />
+    <Compile Include="Exceptions\LocationNotFoundException.cs" />
     <Compile Include="Exceptions\StoryNotFoundException.cs" />
     <Compile Include="Exceptions\TripNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />

@@ -33,12 +33,14 @@ namespace TripPartner.WebAPI.BL
                                 Id = t.Id,
                                 Destination = new LocationVM
                                 {
+                                    Id = d.Id,
                                     Address = d.Address,
                                     Lat = d.LatLng.Latitude.Value,
                                     Long = d.LatLng.Longitude.Value
                                 },
                                 Origin = new LocationVM
                                 {
+                                    Id = o.Id,
                                     Address = o.Address,
                                     Lat = o.LatLng.Latitude.Value,
                                     Long = o.LatLng.Longitude.Value
@@ -82,12 +84,14 @@ namespace TripPartner.WebAPI.BL
                                 Id = t.Id,
                                 Destination = new LocationVM
                                 {
+                                    Id = d.Id,
                                     Address = d.Address,
                                     Lat = d.LatLng.Latitude.Value,
                                     Long = d.LatLng.Longitude.Value
                                 },
                                 Origin = new LocationVM
                                 {
+                                    Id = o.Id,
                                     Address = o.Address,
                                     Lat = o.LatLng.Latitude.Value,
                                     Long = o.LatLng.Longitude.Value
