@@ -17,6 +17,19 @@
                              })
                     .controller("storiesCtrl", function ($scope) {
 
+                    }).directive('storyDirective', function () {
+                        return {
+                            restrict: 'E',
+                            scope: {
+                                mngr: '=storyManager',
+                                story: '=story'
+
+                            },
+                            templateUrl: '/app/components/stories/directives/story-directive.html',
+                            controller: function ($scope) {
+                            }
+
+                        };
                     });
 
 })();

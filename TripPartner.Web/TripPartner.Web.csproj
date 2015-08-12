@@ -79,6 +79,7 @@
     <Content Include="app\components\home\app.home.js" />
     <Content Include="app\components\home\partials\home.html" />
     <Content Include="app\components\stories\app.stories.js" />
+    <Content Include="app\components\stories\directives\story-directive.html" />
     <Content Include="app\components\stories\partials\stories.html" />
     <Content Include="app\directives\my-navbar.html" />
     <Content Include="Content\css\bootstrap.css" />
@@ -95,9 +96,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\components\stories\directives\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
