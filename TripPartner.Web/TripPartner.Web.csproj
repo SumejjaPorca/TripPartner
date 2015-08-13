@@ -81,6 +81,11 @@
     <Content Include="app\components\stories\app.stories.js" />
     <Content Include="app\components\stories\directives\story-directive.html" />
     <Content Include="app\components\stories\partials\stories.html" />
+    <Content Include="app\components\stories\services\Story.js" />
+    <Content Include="app\components\stories\services\StoryManager.js" />
+    <Content Include="app\components\trips\app.trips.js" />
+    <Content Include="app\components\trips\services\Trip.js" />
+    <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\loading-bar.css" />

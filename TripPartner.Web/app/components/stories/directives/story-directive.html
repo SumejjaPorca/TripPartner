@@ -1,9 +1,8 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<ul class="pager">
+    <li class="previous"><button ng-disabled="Serial == 0">← Previous Story</button></li>
+    <h2>Story about the trip from {{Stories[Serial].Trip.Origin}} to {{Stories[Serial].Trip.Destination}}</h2>
+    <div class="well well-lg">
+        <p><em>{{Stories[Serial].Text}}</em></p>
+    </div>
+    <li class="next"><button ng-disabled="Stories.Length == Serial + 1">Next Story →</button></li>
+</ul>

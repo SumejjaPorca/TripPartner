@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var app = angular.module('app.stories', ['ui.router', 'app.account'])
+    var app = angular.module('app.stories', ['ui.router', 'app.account', 'app.trips'])
                      .config(['$stateProvider', function ($stateProvider) {
 
                          $stateProvider
@@ -21,12 +21,17 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                mngr: '=storyManager',
-                                story: '=story'
-
+                                mngr: '=storyManager'
                             },
                             templateUrl: '/app/components/stories/directives/story-directive.html',
                             controller: function ($scope) {
+                                $scope.Stories = mngr.GetTopStories();
+                                $scope.Next = function () {
+                                    $scope.Serial = $scope.Serial + 1;
+                                }
+                                $scope.Previous = function () {
+                                   $scope.Serial = $scope.Serial - 1;
+                                }
                             }
 
                         };
