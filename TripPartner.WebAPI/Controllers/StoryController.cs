@@ -28,11 +28,11 @@ namespace TripPartner.WebAPI.Controllers
             _errHelper = new HttpResponseHelper<HttpError>(this);
         }
 
-        // GET api/Story/ById/6
-        [Route("ById")]
+        // GET api/Story/6
+        [Route("{id:int}")]
         [AllowAnonymous]
         [HttpGet]
-        public IHttpActionResult ById(int id)
+        public IHttpActionResult GetById(int id)
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
@@ -41,7 +41,6 @@ namespace TripPartner.WebAPI.Controllers
             {
                 StoryVM story = _mngr.getById(id);
                 responseMsg = _helper.CreateCustomResponseMsg(story, HttpStatusCode.OK);
-                responseMsg.Headers.CacheControl.NoCache = true;
 
             }
             catch (Exception e)
@@ -53,20 +52,19 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("ByUserId")]
+        [Route("~/api/User/{creatorId}/Story")]
         [HttpGet]
         [AllowAnonymous]
-        // GET api/Story/ByUserId/dsfs1f
-        public IHttpActionResult ByUserId(string id)
+        // GET api/User/dsfs1f/Story
+        public IHttpActionResult GetByCreatorId(string creatorId)
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 
             try
             {
-                List<StoryVM> stories = _mngr.getByUserId(id);
+                List<StoryVM> stories = _mngr.getByUserId(creatorId);
                 responseMsg = _helper.CreateCustomResponseMsg(stories, HttpStatusCode.OK);
-                responseMsg.Headers.CacheControl.NoCache = true;
 
             }
             catch (Exception e)
@@ -77,20 +75,19 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("ByTripId")]
+        [Route("~/api/Trip/{tripId:int}/Story")]
         [HttpGet]
         [AllowAnonymous]
-        // GET api/Story/ByTripId/423
-        public IHttpActionResult ByTripId(int id)
+        // GET api/Trip/423/Story
+        public IHttpActionResult GetByTripId(int tripId)
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 
             try
             {
-                List<StoryVM> stories = _mngr.getByTripId(id);
+                List<StoryVM> stories = _mngr.getByTripId(tripId);
                 responseMsg = _helper.CreateCustomResponseMsg(stories, HttpStatusCode.OK);
-                responseMsg.Headers.CacheControl.NoCache = true;
 
             }
             catch (Exception e)
@@ -102,8 +99,8 @@ namespace TripPartner.WebAPI.Controllers
         }
 
 
-        // POST api/Story/Add
-        [Route("Add")]
+        // POST api/Story
+        [Route("")]
         [Authorize]
         [HttpPost]
         public IHttpActionResult Add(NewStoryVM story)

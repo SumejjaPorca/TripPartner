@@ -29,11 +29,11 @@ namespace TripPartner.WebAPI.Controllers
             _errHelper = new HttpResponseHelper<HttpError>(this);
         }
 
-        // GET api/Trip/ById/6
-        [Route("ById")]
+        // GET api/Trip/{id:int}
+        [Route("{id:int}")]
         [AllowAnonymous]
         [HttpGet]
-        public IHttpActionResult ById(int id)
+        public IHttpActionResult GetById(int id)
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
@@ -42,8 +42,6 @@ namespace TripPartner.WebAPI.Controllers
             {
                 TripVM trip = _mngr.getById(id);
                 responseMsg = _helper.CreateCustomResponseMsg(trip, HttpStatusCode.OK);
-                responseMsg.Headers.CacheControl.NoCache = true;
-
             }
             catch (Exception e)
             {
@@ -54,20 +52,19 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("ByUserId")]
+        [Route("~/api/User/{{creatorId}}/Trip")]
         [HttpGet]
         [AllowAnonymous]
-        // GET api/Trip/ByUserId/dsfs1f
-        public IHttpActionResult ByUserId(string id)
+        // GET api/User/dsfs1f/Trip
+        public IHttpActionResult GetByCreatorId(string creatorId)
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 
             try
             {
-                List<TripVM> trips = _mngr.getByUserId(id);
+                List<TripVM> trips = _mngr.getByUserId(creatorId);
                 responseMsg = _helper.CreateCustomResponseMsg(trips, HttpStatusCode.OK);
-                responseMsg.Headers.CacheControl.NoCache = true;
 
             }
             catch (Exception e)
@@ -80,8 +77,8 @@ namespace TripPartner.WebAPI.Controllers
 
 
 
-        // POST api/Trip/Add
-        [Route("Add")]
+        // POST api/Trip
+        [Route("")]
         [Authorize]
         [HttpPost]
         public IHttpActionResult Add(NewTripVM trip)
