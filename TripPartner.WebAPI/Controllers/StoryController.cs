@@ -98,6 +98,29 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
+        [Route("{index}")]
+        [HttpGet]
+        [AllowAnonymous]
+        // GET api/Story/Rating
+        public IHttpActionResult GetAll(string index = "DateMade") //the biggest gets first
+        {
+            IHttpActionResult response;
+            HttpResponseMessage responseMsg;
+
+            try
+            {
+                List<StoryVM> stories = _mngr.getByTripId(7); //TODO: this
+                responseMsg = _helper.CreateCustomResponseMsg(stories, HttpStatusCode.OK);
+
+            }
+            catch (Exception e)
+            {
+                responseMsg = _errHelper.CreateCustomResponseMsg(new HttpError(e.Message), HttpStatusCode.BadRequest);
+            }
+            response = ResponseMessage(responseMsg);
+            return response;
+        }
+
 
         // POST api/Story
         [Route("")]

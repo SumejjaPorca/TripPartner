@@ -7,7 +7,7 @@
 
             var deferred = $q.defer();
 
-            $http.get('http://' + serverName + '/api/Stories?index=topRated').then(function (response) {
+            $http.get('http://' + serverName + '/api/Story?index=Rating').then(function (response) {
                 var obj = new Story(response.story);//TO DO: this
                 deferred.resolve(obj);
             },

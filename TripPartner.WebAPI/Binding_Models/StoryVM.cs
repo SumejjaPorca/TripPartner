@@ -27,5 +27,9 @@ namespace TripPartner.WebAPI.Binding_Models
         public string CreatorUsername { get; set; }
         [DisplayName("Trip")]
         public TripVM Trip { get; set; }
+        [DisplayName("Rating")]
+        public double Rating { get; set; }
+        [DisplayName("Rates")]
+        public int Rates { get; set; }
     }
 }

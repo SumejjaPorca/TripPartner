@@ -14,6 +14,7 @@ namespace TripPartner.WebAPI.Domain_Models
         [Key]
         public int Id { get; set; }
         [DisplayName("Story made")]
+        [Index("DateMade", 2)]
         public DateTime DateMade { get; set; }
 
         [DisplayName("Last edited")]
@@ -28,6 +29,9 @@ namespace TripPartner.WebAPI.Domain_Models
         public int? TripId { get; set; }
         [ForeignKey("TripId")]
         public Trip Trip { get; set; }
+        [Index("Rating", 1)]
+        public double Rating { get; set; }
+        public int Rates { get; set; }
 
     }
 }

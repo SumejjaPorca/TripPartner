@@ -61,7 +61,9 @@ namespace TripPartner.WebAPI.BL
                             Date = s.Date,
                             DateMade = s.DateMade,
                             LastEdit = s.LastEdit,
-                            Text = s.Text
+                            Text = s.Text,
+                            Rating = s.Rating,
+                            Rates = s.Rates
                         };
 
             StoryVM story = query.FirstOrDefault();
@@ -110,7 +112,9 @@ namespace TripPartner.WebAPI.BL
                             Date = s.Date,
                             DateMade = s.DateMade,
                             LastEdit = s.LastEdit,
-                            Text = s.Text
+                            Text = s.Text,
+                            Rating = s.Rating,
+                            Rates = s.Rates
                         };
 
             return query.ToList();
@@ -150,7 +154,9 @@ namespace TripPartner.WebAPI.BL
                             Date = s.Date,
                             DateMade = s.DateMade,
                             LastEdit = s.LastEdit,
-                            Text = s.Text
+                            Text = s.Text,
+                            Rating = s.Rating,
+                            Rates = s.Rates
                         };
 
             return query.ToList();
@@ -168,7 +174,9 @@ namespace TripPartner.WebAPI.BL
                 DateMade = story.DateMade,
                 Date = story.Date,
                 LastEdit = story.LastEdit,
-                Text = story.Text 
+                Text = story.Text,
+                Rating = 0,
+                Rates = 0
             });
 
             return new StoryVM {
@@ -179,6 +187,8 @@ namespace TripPartner.WebAPI.BL
                 CreatorId = s.CreatorId,
                 CreatorUsername = user.UserName,
                 Text = s.Text,
+                Rating = s.Rating,
+                Rates = s.Rates,
                 Trip = new TripVM
                 {
                    Id = trip.Id,
