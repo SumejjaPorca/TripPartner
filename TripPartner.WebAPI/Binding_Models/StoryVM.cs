@@ -9,7 +9,8 @@ namespace TripPartner.WebAPI.Binding_Models
 {
     public class StoryVM
     {
-
+        [DisplayName("Title")]
+        public string Title { get; set; }
         [DisplayName("Story Id")]
         public int Id { get; set; }
         [DisplayName("Story made")]
@@ -25,8 +26,8 @@ namespace TripPartner.WebAPI.Binding_Models
         public string CreatorId { get; set; }
         [DisplayName("Creator Username")]
         public string CreatorUsername { get; set; }
-        [DisplayName("Trip")]
-        public TripVM Trip { get; set; }
+        [DisplayName("TripId")]
+        public int TripId { get; set; }
         [DisplayName("Rating")]
         public double Rating { get; set; }
         [DisplayName("Rates")]

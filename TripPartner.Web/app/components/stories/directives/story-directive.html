@@ -1,8 +1,13 @@
 ﻿<ul class="pager">
-    <li class="previous"><button ng-disabled="Serial == 0">← Previous Story</button></li>
-    <h2>Story about the trip from {{Stories[Serial].Trip.Origin}} to {{Stories[Serial].Trip.Destination}}</h2>
+    <li class="previous"><button ng-disabled="Serial == 0" ng-click="Previous">← Previous Story</button></li>
+    <h2>{{Stories[Serial].Title}}</h2>
     <div class="well well-lg">
+        <p>Story made: {{Stories[Serial].DateMade}} </p>
+        <p>Rating: {{Stories[Serial].Rating}}</p>
+        <p>Date when it happened: {{Stories[Serial].Date}}</p>
+        <a sref="trips">See this Trip</a>
         <p><em>{{Stories[Serial].Text}}</em></p>
+        <p>Story By: <a sref="profile">{{Stories[Serial].CreatorUsername}}</a></p><!--TO DO: See how to send CreatorId to the state-->
     </div>
-    <li class="next"><button ng-disabled="Stories.Length == Serial + 1">Next Story →</button></li>
+    <li class="next"><button ng-disabled="Stories.Length == Serial + 1" ng-click="Next">Next Story →</button></li>
 </ul>

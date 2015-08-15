@@ -98,18 +98,20 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("{index}")]
-        [HttpGet]
+        [Route("{index:alpha}")]
         [AllowAnonymous]
+        [HttpGet]
         // GET api/Story/Rating
-        public IHttpActionResult GetAll(string index = "DateMade") //the biggest gets first
+        public IHttpActionResult GetAll([FromUri]string index) //the biggest gets first
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 
             try
             {
-                List<StoryVM> stories = _mngr.getByTripId(7); //TODO: this
+                if (index == "")
+                    index = "DateMade";
+                List<StoryVM> stories = _mngr.getAll(index);
                 responseMsg = _helper.CreateCustomResponseMsg(stories, HttpStatusCode.OK);
 
             }

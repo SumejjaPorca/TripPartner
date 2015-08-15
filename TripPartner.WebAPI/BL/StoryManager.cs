@@ -27,35 +27,13 @@ namespace TripPartner.WebAPI.BL
         public StoryVM getById(int id)
         {
             var query = from s in _db.Stories
-                        join t in _db.Trips on s.TripId equals t.Id
-                        join o in _db.Locations on t.OriginId equals o.Id
-                        join d in _db.Locations on t.DestinationId equals d.Id
-                        join u in _db.Users on t.CreatorId equals u.Id
                         join c in _db.Users on s.CreatorId equals c.Id
                         where s.Id == id
                         select new StoryVM
                         {
+                            Title = s.Title,
                             Id = s.Id,
-                            Trip = new TripVM
-                            {
-                                Id = t.Id,
-                                Destination = new LocationVM
-                                {
-                                    Id = d.Id,
-                                    Address = d.Address,
-                                    Lat = d.LatLng.Latitude.Value,
-                                    Long = d.LatLng.Longitude.Value
-                                },
-                                Origin = new LocationVM
-                                {
-                                    Id = o.Id,
-                                    Address = o.Address,
-                                    Lat = o.LatLng.Latitude.Value,
-                                    Long = o.LatLng.Longitude.Value
-                                },
-                                CreatorId = u.Id,
-                                CreatorUsername = u.UserName
-                            },
+                            TripId = s.TripId.Value,
                             CreatorId = c.Id,
                             CreatorUsername = c.UserName,
                             Date = s.Date,
@@ -79,34 +57,12 @@ namespace TripPartner.WebAPI.BL
             var user = getUser(id);
 
             var query = from s in _db.Stories
-                        join t in _db.Trips on s.TripId equals t.Id
-                        join o in _db.Locations on t.OriginId equals o.Id
-                        join d in _db.Locations on t.DestinationId equals d.Id
-                        join u in _db.Users on t.CreatorId equals u.Id
                         where s.CreatorId == id
                         select new StoryVM
                         {
+                            Title = s.Title,
                             Id = s.Id,
-                            Trip = new TripVM
-                            {
-                                Id = t.Id,
-                                Destination = new LocationVM
-                                {
-                                    Id = d.Id,
-                                    Address = d.Address,
-                                    Lat = d.LatLng.Latitude.Value,
-                                    Long = d.LatLng.Longitude.Value
-                                },
-                                Origin = new LocationVM
-                                {
-                                    Id = o.Id,
-                                    Address = o.Address,
-                                    Lat = o.LatLng.Latitude.Value,
-                                    Long = o.LatLng.Longitude.Value
-                                },
-                                CreatorId = u.Id,
-                                CreatorUsername = u.UserName
-                            },
+                            TripId = s.TripId.Value,
                             CreatorId = id,
                             CreatorUsername = user.UserName,
                             Date = s.Date,
@@ -128,27 +84,9 @@ namespace TripPartner.WebAPI.BL
                         where s.TripId == id
                         select new StoryVM
                         {
+                            Title = s.Title,
                             Id = s.Id,
-                            Trip = new TripVM
-                            {
-                                Id = trip.Id,
-                                Destination = new LocationVM
-                                {
-                                    Id = trip.Destination.Id,
-                                    Address = trip.Destination.Address,
-                                    Lat = trip.Destination.LatLng.Latitude.Value,
-                                    Long = trip.Destination.LatLng.Longitude.Value
-                                },
-                                Origin = new LocationVM
-                                {
-                                    Id = trip.Origin.Id,
-                                    Address = trip.Origin.Address,
-                                    Lat = trip.Origin.LatLng.Latitude.Value,
-                                    Long = trip.Origin.LatLng.Longitude.Value
-                                },
-                                CreatorId = trip.Creator.Id,
-                                CreatorUsername = trip.Creator.UserName
-                            },
+                            TripId = id,
                             CreatorId = s.CreatorId,
                             CreatorUsername = u.UserName,
                             Date = s.Date,
@@ -169,6 +107,7 @@ namespace TripPartner.WebAPI.BL
             var trip = getTrip(story.TripId);
 
             var s = _db.Stories.Add(new Story {
+                Title = story.Title,
                 CreatorId = user.Id,
                 TripId = trip.Id,
                 DateMade = story.DateMade,
@@ -180,6 +119,7 @@ namespace TripPartner.WebAPI.BL
             });
 
             return new StoryVM {
+                Title = story.Title,
                 Id = s.Id,
                 LastEdit = s.LastEdit,
                 Date = s.Date,
@@ -189,30 +129,14 @@ namespace TripPartner.WebAPI.BL
                 Text = s.Text,
                 Rating = s.Rating,
                 Rates = s.Rates,
-                Trip = new TripVM
-                {
-                   Id = trip.Id,
-                   CreatorId = trip.CreatorId,
-                   CreatorUsername = trip.Creator.UserName,
-                   DateEnded = trip.DateEnded,
-                   DateStarted = trip.DateStarted,
-                   Destination = new LocationVM
-                    {
-                        Id = trip.DestinationId.Value,
-                        Address = trip.Destination.Address,
-                        Lat = trip.Destination.LatLng.Latitude.Value,
-                        Long = trip.Destination.LatLng.Longitude.Value
-                    },
-                   Origin = new LocationVM
-                    {
-                        Id = trip.OriginId.Value,
-                        Address = trip.Origin.Address,
-                        Lat = trip.Origin.LatLng.Latitude.Value,
-                        Long = trip.Origin.LatLng.Longitude.Value
-                    }
-                }
-                   
+                TripId = s.TripId.Value
             };
+        }
+
+        public List<StoryVM> getAll(string index)
+        {
+            throw new NotImplementedException();
+            //TO DO: this
         }
 
         private ApplicationUser getUser(string id)
@@ -223,12 +147,11 @@ namespace TripPartner.WebAPI.BL
             return user;
         }
 
+
         private Trip getTrip (int id)
         {
             var trip = _db.Trips.Where(t => t.Id == id) //nice to show another way of loading entities from db :)
                                 .Include(t => t.Creator)
-                                .Include(t => t.Destination)
-                                .Include(t => t.Origin)
                                 .FirstOrDefault();
             if (trip == null)
                 throw new TripNotFoundException(id);

@@ -1,0 +1,10 @@
+﻿<ul class="pager">
+    <li class="previous"><button ng-disabled="Serial == 0" ng-click="Previous">← Previous Trip</button></li>
+    <h2> Trip from {{Trips[Serial].Origin.Address}} to {{Trips[Serial].Destination.Address}}</h2>
+    <div class="well well-lg">
+        <p>Trip started: {{Trips[Serial].DateStarted}} </p>
+        <p>Trip ended: {{Trips[Serial].DateEnded}} </p>
+        <p>Trip By: <a sref="profile">{{Trips[Serial].CreatorUsername}}</a></p><!--TO DO: See how to send CreatorId to the state-->
+    </div>
+    <li class="next"><button ng-disabled="Trips.Length == Serial + 1" ng-click="Next">Next Trip →</button></li>
+</ul>

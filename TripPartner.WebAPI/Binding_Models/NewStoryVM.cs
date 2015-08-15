@@ -9,6 +9,9 @@ namespace TripPartner.WebAPI.Binding_Models
 {
     public class NewStoryVM
     {
+        [DisplayName("Title")]
+        [Required]
+        public string Title { get; set; }
         [DisplayName("Story made")]
         public DateTime DateMade { get; set; }
 

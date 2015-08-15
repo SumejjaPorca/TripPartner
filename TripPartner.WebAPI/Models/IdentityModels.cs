@@ -20,7 +20,8 @@ namespace TripPartner.WebAPI.Models
         }
 
 
-        public virtual ICollection<Story> Stories { get; set; }
+        public virtual ICollection<Story> Stories { get; set; } 
+        public virtual ICollection<Trip> Trips { get; set; }
  
     }
 

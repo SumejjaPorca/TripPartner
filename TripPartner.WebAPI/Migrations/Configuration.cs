@@ -4,12 +4,14 @@ namespace TripPartner.WebAPI.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using TripPartner.WebAPI.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TripPartner.WebAPI.Data.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TripPartner.WebAPI.Data.ApplicationDbContext context)
@@ -25,7 +27,7 @@ namespace TripPartner.WebAPI.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
+        
         }
     }
 }

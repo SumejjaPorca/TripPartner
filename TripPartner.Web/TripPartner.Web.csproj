@@ -68,8 +68,10 @@
   <ItemGroup>
     <Content Include="app\components\account\app.account.js" />
     <Content Include="app\components\account\controllers\loginCtrl.js" />
+    <Content Include="app\components\account\controllers\profileCtrl.js" />
     <Content Include="app\components\account\controllers\registerCtrl.js" />
     <Content Include="app\components\account\partials\login.html" />
+    <Content Include="app\components\account\partials\profile.html" />
     <Content Include="app\components\account\partials\register.html" />
     <Content Include="app\app.js" />
     <Content Include="app\components\account\scripts\angular-local-storage.js" />
@@ -84,6 +86,9 @@
     <Content Include="app\components\stories\services\Story.js" />
     <Content Include="app\components\stories\services\StoryManager.js" />
     <Content Include="app\components\trips\app.trips.js" />
+    <Content Include="app\components\trips\directives\trip-directive.html" />
+    <Content Include="app\components\trips\partials\trip.html" />
+    <Content Include="app\components\trips\partials\trips.html" />
     <Content Include="app\components\trips\services\Trip.js" />
     <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />

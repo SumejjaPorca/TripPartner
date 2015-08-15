@@ -32,6 +32,8 @@ namespace TripPartner.WebAPI.Domain_Models
         [Index("Rating", 1)]
         public double Rating { get; set; }
         public int Rates { get; set; }
+        [DisplayName("Title")]
+        public string Title { get; set; }
 
     }
 }

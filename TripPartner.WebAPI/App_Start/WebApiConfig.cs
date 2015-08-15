@@ -28,6 +28,12 @@ namespace TripPartner.WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "MyRoute",
+                routeTemplate: "api/{controller}/{index}",
+                defaults: new { index = RouteParameter.Optional}
+                );
         }
     }
 }

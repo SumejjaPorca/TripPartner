@@ -13,7 +13,12 @@
                         url: '/register',
                         controller: 'registerCtrl',
                         templateUrl: '/app/components/account/partials/register.html'
-                    });
+                    })
+                         .state('profile', { //TO DO: add some parameters
+                             url: '/profile',
+                             controller: 'profileCtrl',
+                             templateUrl: '/app/components/account/partials/profile.html'
+                         });
                          $httpProvider.interceptors.push('authInterceptor');
                          $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 

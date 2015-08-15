@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using TripPartner.WebAPI.Models;
 using System.Data.Entity;
 using TripPartner.WebAPI.Domain_Models;
+using TripPartner.WebAPI.Migrations;
 
 
 namespace TripPartner.WebAPI.Data
@@ -22,6 +23,8 @@ namespace TripPartner.WebAPI.Data
             public ApplicationDbContext()
                 : base("DefaultConnection", throwIfV1Schema: false)
             {
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+ 
             }
 
             public static ApplicationDbContext Create()

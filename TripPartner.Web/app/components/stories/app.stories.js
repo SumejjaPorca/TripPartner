@@ -1,7 +1,8 @@
 ﻿(function () {
     'use strict';
     var app = angular.module('app.stories', ['ui.router', 'app.account', 'app.trips'])
-                     .config(['$stateProvider', function ($stateProvider) {
+                     .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
+                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
                          $stateProvider
                     .state('stories', {
@@ -15,18 +16,18 @@
                      ])
                      .run(function () {
                              })
-                    .controller("storiesCtrl", function ($scope) {
+                    .controller("storiesCtrl",['$scope', 'StoryManager', function ($scope, mngr) {
 
-                    }).directive('storyDirective', function () {
+                    }]).directive('storyDirective', function () {
                         return {
                             restrict: 'E',
                             scope: {
-                                mngr: '=storyManager'
+                                Serial: '=',
+                                Stories: '='
                             },
                             templateUrl: '/app/components/stories/directives/story-directive.html',
                             controller: function ($scope) {
-                                $scope.Stories = mngr.GetTopStories();
-                                $scope.Next = function () {
+                               $scope.Next = function () {
                                     $scope.Serial = $scope.Serial + 1;
                                 }
                                 $scope.Previous = function () {

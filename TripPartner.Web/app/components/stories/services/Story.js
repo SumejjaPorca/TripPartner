@@ -9,7 +9,7 @@
             this.Text = model.Text,
             this.CreatorId = model.CreatorId,
             this.CreatorUsername = model.CreatorUsername,
-            Trip = model.Trip
+            this.TripId = model.TripId
         }
         return Story;
     });
