@@ -98,11 +98,11 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("{index:alpha}")]
+        [Route("{index}")]
         [AllowAnonymous]
         [HttpGet]
         // GET api/Story/Rating
-        public IHttpActionResult GetAll([FromUri]string index) //the biggest gets first
+        public IHttpActionResult GetAll(string index) //the biggest gets first
         {
             IHttpActionResult response;
             HttpResponseMessage responseMsg;

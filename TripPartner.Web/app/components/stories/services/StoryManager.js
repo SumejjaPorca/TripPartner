@@ -10,7 +10,7 @@
             var deferred = $q.defer();
 
             if (TopStories == undefined)
-                $http.get('http://' + serverName + '/api/Story?index=Rating').then(function (response) {
+                $http.get('http://' + serverName + '/api/Story/Rating').then(function (response) {
                     TopStories = response.data.stories;//TO DO: this
                     deferred.resolve(response);
                 },

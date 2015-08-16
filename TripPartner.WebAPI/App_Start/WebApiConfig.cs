@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.Cors;
+using System.Web.Http.Routing;
 
 namespace TripPartner.WebAPI
 {
@@ -30,10 +31,11 @@ namespace TripPartner.WebAPI
             );
 
             config.Routes.MapHttpRoute(
-                name: "MyRoute",
-                routeTemplate: "api/{controller}/{index}",
-                defaults: new { index = RouteParameter.Optional}
-                );
+                 name: "MyRoute",
+                 routeTemplate: "api/{controller}/{index}",
+                 defaults: new { index = RouteParameter.Optional },
+                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                 );
         }
     }
 }

@@ -135,9 +135,72 @@ namespace TripPartner.WebAPI.BL
 
         public List<StoryVM> getAll(string index)
         {
-            throw new NotImplementedException();
-            //TO DO: this
-        }
+            var stories = new List<Story>();
+            switch (index)
+            {
+                case ("Rating"):
+                    {
+                        stories = _db.Stories.Where(s => 1 == 1)
+                        .OrderByDescending(s => s.Rating)
+                        .ToList();
+                        break;
+                    }
+                case ("DateMade"):
+                    {
+                        stories = _db.Stories.Where(s => 1 == 1)
+                                       .OrderByDescending(s => s.DateMade)
+                                       .ToList();
+                        break;
+                    }
+                case ("Rates"):
+                    {
+                        stories = _db.Stories.Where(s => 1 == 1)
+                                       .OrderByDescending(s => s.Rates)
+                                       .ToList();
+                        break;
+                    }
+                case ("LastEdit"):
+                    {
+                        stories = _db.Stories.Where(s => 1 == 1)
+                                       .OrderByDescending(s => s.LastEdit)
+                                       .ToList();
+                        break;
+                    }
+                case ("TripId"):
+                    {
+                        stories = _db.Stories.Where(s => 1 == 1)
+                                       .Include(s => s.Creator)
+                                       .OrderByDescending(s => s.TripId)
+                                       .ToList();
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Unable to put index on: " + index + ".");
+                    }
+            }
+
+            List<StoryVM> list = new List<StoryVM>();
+            foreach(Story s in stories){
+                list.Add( new StoryVM{
+                     CreatorId = s.CreatorId,
+                     CreatorUsername = s.Creator.UserName,
+                     Date = s.Date,
+                     DateMade = s.DateMade,
+                     Id = s.Id,
+                     LastEdit = s.LastEdit,
+                     Rates = s.Rates,
+                     Rating = s.Rating,
+                     Text = s.Text,
+                     Title = s.Title,
+                     TripId = s.TripId.Value
+                }
+                    );
+            }
+                    
+                    return list;
+            }
+        
 
         private ApplicationUser getUser(string id)
         {
