@@ -7,13 +7,13 @@ namespace TripPartner.WebAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class user : IMigrationMetadata
+    public sealed partial class new2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(user));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(new2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508142331235_user"; }
+            get { return "201508180035334_new2"; }
         }
         
         string IMigrationMetadata.Source
