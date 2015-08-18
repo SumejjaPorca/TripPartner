@@ -141,6 +141,7 @@ namespace TripPartner.WebAPI.BL
                 case ("Rating"):
                     {
                         stories = _db.Stories.Where(s => 1 == 1)
+                                       .Include(s => s.Creator)
                         .OrderByDescending(s => s.Rating)
                         .ToList();
                         break;
@@ -148,6 +149,7 @@ namespace TripPartner.WebAPI.BL
                 case ("DateMade"):
                     {
                         stories = _db.Stories.Where(s => 1 == 1)
+                                       .Include(s => s.Creator)
                                        .OrderByDescending(s => s.DateMade)
                                        .ToList();
                         break;
@@ -155,6 +157,7 @@ namespace TripPartner.WebAPI.BL
                 case ("Rates"):
                     {
                         stories = _db.Stories.Where(s => 1 == 1)
+                                       .Include(s => s.Creator)
                                        .OrderByDescending(s => s.Rates)
                                        .ToList();
                         break;
@@ -162,6 +165,7 @@ namespace TripPartner.WebAPI.BL
                 case ("LastEdit"):
                     {
                         stories = _db.Stories.Where(s => 1 == 1)
+                                       .Include(s => s.Creator)
                                        .OrderByDescending(s => s.LastEdit)
                                        .ToList();
                         break;
