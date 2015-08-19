@@ -12,7 +12,7 @@
             $http.get('http://' + serverName + '/api/Story/Rating').then(function (response) {
                     var stories = response.data;
                     stories.forEach(function (story) {
-                        TopStories.Add(new Story(story));
+                        TopStories.push(new Story(story));
                     });
                     deferred.resolve(TopStories);
                 },

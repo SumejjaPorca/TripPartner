@@ -22,7 +22,7 @@
 
                         var init = function () {
                             mngr.getTopStories().then(function (response) {
-                                $scope.Stories = response.data.stories;
+                                $scope.Stories = response.data;
                                 if ($scope.Stories != undefined)
                                     $scope.Serial = $scope.Stories.Length / 2;
                                 else
