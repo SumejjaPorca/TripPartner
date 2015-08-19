@@ -2,23 +2,23 @@
 
     module.service('StoryManager', ['Story', '$http', 'serverName', '$q', function (Story, $http, serverName, $q) {
       
-        var TopStories = undefined;//we will cache this because it doesn't change often
-       
+    
         this.getTopStories = function () {
 
+            var TopStories = [];
 
             var deferred = $q.defer();
 
-            if (TopStories == undefined)
-                $http.get('http://' + serverName + '/api/Story/Rating').then(function (response) {
-                    TopStories = response.data.stories;//TO DO: this
-                    deferred.resolve(response);
+            $http.get('http://' + serverName + '/api/Story/Rating').then(function (response) {
+                    var stories = response.data;
+                    stories.forEach(function (story) {
+                        TopStories.Add(new Story(story));
+                    });
+                    deferred.resolve(TopStories);
                 },
                 function (response) {
                     deferred.reject(response);
                 });
-            else
-                deferred.resolve(TopStories);
 
             return deferred.promise;
         };

@@ -7,7 +7,7 @@
         <p>Date when it happened: {{Stories[Serial].Date}}</p>
         <a sref="trips">See this Trip</a>
         <p><em>{{Stories[Serial].Text}}</em></p>
-        <p>Story By: <a sref="profile">{{Stories[Serial].CreatorUsername}}</a></p><!--TO DO: See how to send CreatorId to the state-->
+        <p>Story By: <a sref="profile({UserId:Stories[Serial].Creatorid, own:false})">{{Stories[Serial].CreatorUsername}}</a></p><!--TODO: See how to send CreatorId to the state-->
     </div>
     <li class="next"><button ng-disabled="Stories.Length == Serial + 1" ng-click="Next">Next Story →</button></li>
 </ul>
