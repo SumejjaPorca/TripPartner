@@ -11,25 +11,25 @@
                     })
                          .state('trips.byLoc', {
                              url: '/byLoc',
-                             templateUrl: '/app/components/trips/partials/list.html',
+                             templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byLocCtrl',
                              params: {locId: undefined}
                          })
                          .state('trips.byUser', {
                              url: '/byUser',
-                             templateUrl: '/app/components/trips/partials/list.html',
+                             templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byUserCtrl',
                              params: {userId: undefined}
                          })
                         .state('trips.byLoc.details', {
                             url: '/details',
-                            templateUrl: '/app/components/trips/partials/trips-detail.html',
+                            templateUrl: '/app/components/trips/partials/list.html',
                             controller: 'tripsDetailCtrl',
                             params: { Trips: [], Serial: 0 }
                         })
                         .state('trips.byUser.details', {
                             url: '/details',
-                            templateUrl: '/app/components/trips/partials/trips-detail.html',
+                            templateUrl: '/app/components/trips/partials/list.html',
                             controller: 'tripsDetailCtrl',
                             params: { Trips: [], Serial: 0 }
                         })
@@ -58,7 +58,8 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                Trips: '='
+                                Trips: '=',
+                                Title: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-grid.html',
                             controller: ['$scope', function ($scope) {

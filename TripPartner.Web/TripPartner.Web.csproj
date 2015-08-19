@@ -90,10 +90,10 @@
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />
     <Content Include="app\components\trips\directives\trips-list.html" />
-    <Content Include="app\components\trips\partials\list.html" />
+    <Content Include="app\components\trips\partials\grid.html" />
     <Content Include="app\components\trips\partials\main.html" />
     <Content Include="app\components\trips\partials\trip-detail.html" />
-    <Content Include="app\components\trips\partials\trips-detail.html" />
+    <Content Include="app\components\trips\partials\list.html" />
     <Content Include="app\components\trips\services\Trip.js" />
     <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />

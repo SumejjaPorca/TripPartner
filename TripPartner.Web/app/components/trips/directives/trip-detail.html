@@ -1,1 +1,15 @@
-﻿<div></div>
+﻿<div class="well well-sm">
+    <label class="col-lg-2 control-label">Trip from: </label>
+    <div class="col-lg-10">
+        <h4>{{trip.Origin.Address}}</h4>
+    </div>
+    <label class="col-lg-2 control-label">Trip to: </label>
+    <div class="col-lg-10">
+        <h4>{{trip.Destination.Address}}</h4>
+    </div>
+    <!--TODO: add more stuff details here-->
+    <label class="col-lg-2 control-label">By: </label>
+    <div class="col-lg-10">
+        <a sref="profile({UserId:trip.Creatorid, own:false})"><h4>{{trip.CreatorUsername}}</h4></a>
+    </div>
+</div>
