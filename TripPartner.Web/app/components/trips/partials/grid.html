@@ -1,3 +1,4 @@
 ﻿<div>
-    <trips-grid title="Title" trips="Trips"></trips-grid>
+    <p ng-if="message != ''">{{message}}</p>
+    <trips-grid title="Title" trips="Trips" ng-if="message == ''"></trips-grid>
 </div>

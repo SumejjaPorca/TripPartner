@@ -89,7 +89,8 @@
     <Content Include="app\components\trips\controllers\byLocCtrl.js" />
     <Content Include="app\components\trips\controllers\byUserCtrl.js" />
     <Content Include="app\components\trips\controllers\tripDetailCtrl.js" />
-    <Content Include="app\components\trips\controllers\tripsDetailCtrl.js" />
+    <Content Include="app\components\trips\controllers\tripsByLocListCtrl.js" />
+    <Content Include="app\components\trips\controllers\tripsByUserListCtrl.js" />
     <Content Include="app\components\trips\directives\small-trip.html" />
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />
@@ -98,6 +99,8 @@
     <Content Include="app\components\trips\partials\main.html" />
     <Content Include="app\components\trips\partials\trip-detail.html" />
     <Content Include="app\components\trips\partials\list.html" />
+    <Content Include="app\components\trips\services\Location.js" />
+    <Content Include="app\components\trips\services\LocationManager.js" />
     <Content Include="app\components\trips\services\Trip.js" />
     <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />

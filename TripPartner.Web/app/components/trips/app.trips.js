@@ -15,40 +15,40 @@
                              controller: 'byLocCtrl',
                              params: { locId: undefined },
                              resolve: {
-                                 locId: ['$stateParams', function ($stateParams) {
+                                 id: ['$stateParams', function ($stateParams) {
                                      return $stateParams.locId;
                                  }]
                              }
                          })
                          .state('trips.byUser', {
-                             url: '/byUser/:userId',
+                             url: '/byUser/{userId}',
                              templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byUserCtrl',
                              params: { userId: undefined },
                              resolve: {
-                                 userId: ['$stateParams', function ($stateParams) {
+                                 id: ['$stateParams', function ($stateParams) {
                                      return $stateParams.userId;
                                  }]
                              }
                          })
                         .state('trips.byLoc.details', {
-                            url: '/details',
+                            url: '/details/{serial:int}',
                             templateUrl: '/app/components/trips/partials/list.html',
-                            controller: 'tripsDetailCtrl',
-                            params: { trips: [], serial: 0 }
+                            controller: 'tripsByLocListCtrl',
+                            params: { trips: null, serial: null }
                         })
                         .state('trips.byUser.details', {
-                            url: '/details',
+                            url: '/details/{serial:int}',
                             templateUrl: '/app/components/trips/partials/list.html',
-                            controller: 'tripsDetailCtrl',
-                            params: { trips: [], serial: 0 }
+                            controller: 'tripsByUserListCtrl',
+                            params: { trips: null, serial: null }
                         })
 
                              .state('trips.details', {
-                                 url: '/details',
+                                 url: '/details/{tripId:int}',
                                  templateUrl: '/app/components/trips/partials/trip-detail.html',
                                  controller: 'tripDetailCtrl',
-                                 params: {tripId: undefined}
+                                 params: {tripId: null}
                              });
                      }
                      ])

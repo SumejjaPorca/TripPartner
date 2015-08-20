@@ -1,3 +1,5 @@
 ﻿<div>
-    <trip-detail trip="trip"></trip-detail>
+    <p ng-if="message != ''">{{message}}</p>
+
+    <trip-detail trip="Trip" ng-if="message == ''"></trip-detail>
 </div>
