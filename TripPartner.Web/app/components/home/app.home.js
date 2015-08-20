@@ -22,9 +22,9 @@
 
                         var init = function () {
                             mngr.getTopStories().then(function (response) {
-                                $scope.Stories = response.data;
+                                $scope.Stories = response;
                                 if ($scope.Stories != undefined)
-                                    $scope.Serial = $scope.Stories.Length / 2;
+                                    $scope.Serial = $scope.Stories.length / 2;
                                 else
                                     $scope.Stories = [];
                             });

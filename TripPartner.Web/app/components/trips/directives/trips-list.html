@@ -1,6 +1,6 @@
 ﻿<ul class="pager">
-    <li class="previous"><button ng-disabled="Serial == 0" ng-click="Previous">← Previous Trip</button></li>
-    <h2>{{Title}}</h2>
-    <trip-detail trip ="Trips[Serial]"></trip-detail>
-    <li class="next"><button ng-disabled="Stories.Length == Serial + 1" ng-click="Next">Next Trip →</button></li>
+    <li class="previous"><button ng-disabled="serial == 0" ng-click="Previous">← Previous Trip</button></li>
+    <h2>{{title}}</h2>
+    <trip-detail trip ="trips[serial]"></trip-detail>
+    <li class="next"><button ng-disabled="stories.length == serial + 1" ng-click="Next">Next Trip →</button></li>
 </ul>

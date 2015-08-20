@@ -15,10 +15,10 @@
                         templateUrl: '/app/components/account/partials/register.html'
                     })
                          .state('profile', { //TO DO: add some parameters
-                             url: '/profile',
+                             url: '/profile/:userId',
                              controller: 'profileCtrl',
                              templateUrl: '/app/components/account/partials/profile.html',
-                             params: {UserId: "", own:true}
+                             params: {userId: "", own:true}
                          });
                          $httpProvider.interceptors.push('authInterceptor');
                          $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';

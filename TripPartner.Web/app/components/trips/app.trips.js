@@ -10,35 +10,45 @@
                         templateUrl: '/app/components/trips/partials/main.html'
                     })
                          .state('trips.byLoc', {
-                             url: '/byLoc',
+                             url: '/byLoc/{locId:int}',
                              templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byLocCtrl',
-                             params: {locId: undefined}
+                             params: { locId: undefined },
+                             resolve: {
+                                 locId: ['$stateParams', function ($stateParams) {
+                                     return $stateParams.locId;
+                                 }]
+                             }
                          })
                          .state('trips.byUser', {
-                             url: '/byUser',
+                             url: '/byUser/:userId',
                              templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byUserCtrl',
-                             params: {userId: undefined}
+                             params: { userId: undefined },
+                             resolve: {
+                                 userId: ['$stateParams', function ($stateParams) {
+                                     return $stateParams.userId;
+                                 }]
+                             }
                          })
                         .state('trips.byLoc.details', {
                             url: '/details',
                             templateUrl: '/app/components/trips/partials/list.html',
                             controller: 'tripsDetailCtrl',
-                            params: { Trips: [], Serial: 0 }
+                            params: { trips: [], serial: 0 }
                         })
                         .state('trips.byUser.details', {
                             url: '/details',
                             templateUrl: '/app/components/trips/partials/list.html',
                             controller: 'tripsDetailCtrl',
-                            params: { Trips: [], Serial: 0 }
+                            params: { trips: [], serial: 0 }
                         })
 
                              .state('trips.details', {
                                  url: '/details',
                                  templateUrl: '/app/components/trips/partials/trip-detail.html',
                                  controller: 'tripDetailCtrl',
-                                 params: {TripId: undefined}
+                                 params: {tripId: undefined}
                              });
                      }
                      ])
@@ -58,8 +68,8 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                Trips: '=',
-                                Title: '='
+                                trips: '=',
+                                title: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-grid.html',
                             controller: ['$scope', function ($scope) {
@@ -71,23 +81,23 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                Serial: '=',
-                                Trips: '=',
-                                Title: '=',
+                                serial: '=',
+                                trips: '=',
+                                title: '=',
                                 mngr: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-list.html',
                             controller: ['$scope', function ($scope) {
                                 $scope.Next = function () {
-                                    $scope.Serial = $scope.Serial + 1;
-                                    mngr.getDetailed(Trips[Serial].Id).then(function (response) {
-                                        Trips[Serial] = response.data;
+                                    $scope.serial = $scope.serial + 1;
+                                    mngr.getDetailed(trips[serial].Id).then(function (response) {
+                                        trips[serial] = response.data;
                                     });
                                 }
                                 $scope.Previous = function () {
-                                    $scope.Serial = $scope.Serial - 1;
-                                    mngr.getDetailed(Trips[Serial].Id).then(function (response) {
-                                        Trips[Serial] = response.data;
+                                    $scope.serial = $scope.serial - 1;
+                                    mngr.getDetailed(trips[serial].Id).then(function (response) {
+                                        trips[serial] = response.data;
                                     });
                                 }
                             }]

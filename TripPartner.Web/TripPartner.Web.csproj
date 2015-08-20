@@ -86,6 +86,10 @@
     <Content Include="app\components\stories\services\Story.js" />
     <Content Include="app\components\stories\services\StoryManager.js" />
     <Content Include="app\components\trips\app.trips.js" />
+    <Content Include="app\components\trips\controllers\byLocCtrl.js" />
+    <Content Include="app\components\trips\controllers\byUserCtrl.js" />
+    <Content Include="app\components\trips\controllers\tripDetailCtrl.js" />
+    <Content Include="app\components\trips\controllers\tripsDetailCtrl.js" />
     <Content Include="app\components\trips\directives\small-trip.html" />
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />
@@ -111,9 +115,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\components\trips\controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

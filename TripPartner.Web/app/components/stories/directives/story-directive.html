@@ -1,13 +1,13 @@
 ﻿<ul class="pager">
-    <li class="previous"><button ng-disabled="Serial == 0" ng-click="Previous">← Previous Story</button></li>
-    <h2>{{Stories[Serial].Title}}</h2>
+    <li class="previous"><button ng-disabled="serial == 0" ng-click="Previous">← Previous Story</button></li>
+    <h2>{{stories[serial].Title}}</h2>
     <div class="well well-lg">
-        <p>Story made: {{Stories[Serial].DateMade}} </p>
-        <p>Rating: {{Stories[Serial].Rating}}</p>
-        <p>Date when it happened: {{Stories[Serial].Date}}</p>
+        <p>Story made: {{stories[serial].DateMade}} </p>
+        <p>Rating: {{stories[serial].Rating}}</p>
+        <p>Date when it happened: {{stories[serial].Date}}</p>
         <a sref="trips">See this Trip</a>
-        <p><em>{{Stories[Serial].Text}}</em></p>
-        <p>Story By: <a sref="profile({UserId:Stories[Serial].Creatorid, own:false})">{{Stories[Serial].CreatorUsername}}</a></p>
+        <p><em>{{stories[serial].Text}}</em></p>
+        <p>Story By: <a sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
     </div>
-    <li class="next"><button ng-disabled="Stories.Length == Serial + 1" ng-click="Next">Next Story →</button></li>
+    <li class="next"><button ng-disabled="stories.length == serial + 1" ng-click="Next">Next Story →</button></li>
 </ul>

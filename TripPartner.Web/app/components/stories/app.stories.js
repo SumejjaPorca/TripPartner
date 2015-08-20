@@ -22,16 +22,16 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                Serial: '=',
-                                Stories: '='
+                                serial: '=',
+                                stories: '='
                             },
                             templateUrl: '/app/components/stories/directives/story-directive.html',
                             controller: function ($scope) {
                                $scope.Next = function () {
-                                    $scope.Serial = $scope.Serial + 1;
+                                    $scope.serial = $scope.serial + 1;
                                 }
                                 $scope.Previous = function () {
-                                   $scope.Serial = $scope.Serial - 1;
+                                   $scope.serial = $scope.serial - 1;
                                 }
                             }
 
