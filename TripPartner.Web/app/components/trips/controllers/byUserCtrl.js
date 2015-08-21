@@ -3,7 +3,6 @@
     tripModule.controller('byUserCtrl', ['$scope', 'TripManager', 'AccountManager', '$state', '$stateParams', function ($scope, mngr, accMngr, $state, $stateParams) {
 
 
-        init();
 
         var init = function () {
             $scope.message = "";
@@ -20,7 +19,7 @@
                 function (response) {
                     $scope.message = "Sorry, user with id: " + $stateParams.userId + " was not found.";
                 });
-            mngr.getByUserId($stateParams.locId).then(
+            mngr.getByUserId($stateParams.userId).then(
                   function (response) {
                       $scope.Trips = response;
                       $scope.Title = "Trips made by: " + user.username;
@@ -28,6 +27,8 @@
                       $scope.message = "Trips by " + user.username + "were not found."
                   });
         }
+
+        init();
 
 
     }]);

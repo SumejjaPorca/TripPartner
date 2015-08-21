@@ -1,22 +1,27 @@
 ﻿(function (tripModule) {
 
-    tripModule.controller('tripDetailCtrl', ['$scope', 'TripManager', '$state', '$stateParams', function ($scope, mngr, $state, $stateParams) {
+    tripModule.controller('allCtrl', ['$scope', 'TripManager', '$state', function ($scope, mngr,  $state) {
 
-        
+
         var init = function () {
+
             $scope.message = "";
+
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
            
-            mngr.getById($stateParams.tripId).then(
+            mngr.getAll().then(
                   function (response) {
-                      $scope.Trip = response;
-                    }, function (response) {
-                      $scope.message = "Trip with id: " + $stateParams.tripId + "was not found."
+                      $scope.Trips = response;
+                      $scope.Title = "Trips";
+                  }, function (response) {
+                      $scope.message = "Trips were not found."
                   });
         }
 
+
         init();
+
 
 
     }]);

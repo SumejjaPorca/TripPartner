@@ -3,7 +3,6 @@
     tripModule.controller('tripsByUserListCtrl', ['$scope', 'TripManager', 'AccountManager', '$state', '$stateParams', 'id', function ($scope, mngr, accMngr, $state, $stateParams, id) {
 
 
-        init();
 
         var init = function () {
             $scope.message = "";
@@ -45,6 +44,7 @@
             }
         }
 
+        init();
 
     }]);
 

@@ -226,6 +226,7 @@
     <Compile Include="BL\TripManager.cs" />
     <Compile Include="BL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />

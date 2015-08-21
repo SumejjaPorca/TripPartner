@@ -9,6 +9,8 @@ using TripPartner.WebAPI.Models;
 using System.Data.Entity.Spatial;
 using System.Globalization;
 using TripPartner.WebAPI.Exceptions;
+using System.Data.Entity;
+
 
 namespace TripPartner.WebAPI.BL
 {
@@ -88,6 +90,33 @@ namespace TripPartner.WebAPI.BL
             return query.ToList();
         }
 
+        public List<TripVM> getByLocationId(int id)
+        {
+            var trips = _db.Trips.Where(t => t.DestinationId == id || t.OriginId == id)
+                                 .Include(t => t.Creator)
+                                 .Include(t => t.Destination)
+                                 .Include(t => t.Origin)
+                                 .Select(t => new TripVM{
+                                      CreatorId = t.CreatorId,
+                                      CreatorUsername = t.Creator.UserName,
+                                      DateEnded = t.DateEnded,
+                                      DateStarted = t.DateStarted,
+                                      Destination = new LocationVM{
+                                           Address = t.Destination.Address,
+                                           Lat = t.Destination.LatLng.Latitude.Value,
+                                           Long = t.Destination.LatLng.Longitude.Value
+                                      },
+                                      Origin = new LocationVM{
+                                          Address = t.Origin.Address,
+                                          Lat = t.Origin.LatLng.Latitude.Value,
+                                          Long = t.Origin.LatLng.Longitude.Value
+                                      },
+                                      Id = t.Id
+                                 }).ToList();
+                
+            return trips;
+        }
+
         public TripVM NewTrip(NewTripVM trip)
         {
             var user = getUser(trip.CreatorId);
@@ -116,6 +145,32 @@ namespace TripPartner.WebAPI.BL
                 DateEnded = t.DateEnded,
                 DateStarted = t.DateStarted
             };
+        }
+
+        public List<TripVM> GetAll()
+        {
+            var trips = _db.Trips.Include(t => t.Origin)
+                            .Include(t => t.Destination)
+                            .Select(t => new TripVM{
+                                 Destination = new LocationVM{
+                                     Address = t.Destination.Address,
+                                     Id = t.Destination.Id,
+                                     Lat = t.Destination.LatLng.Latitude.Value,
+                                     Long = t.Destination.LatLng.Longitude.Value
+                                 },
+                                 Origin = new LocationVM{
+                                     Address = t.Origin.Address,
+                                     Id = t.Origin.Id,
+                                     Lat = t.Origin.LatLng.Latitude.Value,
+                                     Long = t.Origin.LatLng.Longitude.Value
+                                 },
+                                 Id = t.Id,
+                                 CreatorId = t.CreatorId,
+                                 CreatorUsername = t.Creator.UserName,
+                                 DateEnded = t.DateEnded,
+                                 DateStarted = t.DateStarted
+                            }).ToList();
+            return trips;
         }
 
         public int GetNumberOfTrips()

@@ -140,42 +140,37 @@ namespace TripPartner.WebAPI.BL
             {
                 case ("Rating"):
                     {
-                        stories = _db.Stories.Where(s => 1 == 1)
-                                       .Include(s => s.Creator)
+                        stories = _db.Stories.Include(s => s.Creator)
                         .OrderByDescending(s => s.Rating)
                         .ToList();
                         break;
                     }
                 case ("DateMade"):
                     {
-                        stories = _db.Stories.Where(s => 1 == 1)
-                                       .Include(s => s.Creator)
+                        stories = _db.Stories.Include(s => s.Creator)
                                        .OrderByDescending(s => s.DateMade)
                                        .ToList();
                         break;
                     }
                 case ("Rates"):
                     {
-                        stories = _db.Stories.Where(s => 1 == 1)
-                                       .Include(s => s.Creator)
+                        stories = _db.Stories.Include(s => s.Creator)
                                        .OrderByDescending(s => s.Rates)
                                        .ToList();
                         break;
                     }
                 case ("LastEdit"):
                     {
-                        stories = _db.Stories.Where(s => 1 == 1)
-                                       .Include(s => s.Creator)
+                        stories = _db.Stories.Include(s => s.Creator)
                                        .OrderByDescending(s => s.LastEdit)
                                        .ToList();
                         break;
                     }
                 case ("TripId"):
                     {
-                        stories = _db.Stories.Where(s => 1 == 1)
-                                       .Include(s => s.Creator)
-                                       .OrderByDescending(s => s.TripId)
-                                       .ToList();
+                        stories = _db.Stories.Include(s => s.Creator)
+                                             .OrderByDescending(s => s.TripId)
+                                             .ToList();
                         break;
                     }
                 default:

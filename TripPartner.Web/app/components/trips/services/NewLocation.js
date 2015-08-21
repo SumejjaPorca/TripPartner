@@ -1,13 +1,12 @@
 ﻿(function (module) {
 
-    module.factory('Location', function () {
-        function Location(model) {
-            this.Id = model.Id,
+    module.factory('NewLocation', function () {
+        function NewLocation(model) {
             this.Lat = model.Lat,
             this.Long = model.Long,
             this.Address = model.Address
         }
-        return Location;
+        return NewLocation;
     });
 
 })(angular.module('app.trips'));

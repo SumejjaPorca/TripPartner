@@ -38,9 +38,23 @@ namespace TripPartner.WebAPI
                  );
 
             config.Routes.MapHttpRoute(
-            name: "MyRoute",
-            routeTemplate: "api/{controller}/{index}",
-            defaults: new { index = RouteParameter.Optional },
+            name: "ByUserRoute",
+            routeTemplate: "api/User/{creatorId}/{controller}",
+            defaults: new { creatorId = RouteParameter.Optional },
+            constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+            name: "ByTripRoute",
+            routeTemplate: "api/Trip/{tripId}/{controller}",
+            defaults: new { tripId = RouteParameter.Optional },
+            constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+            name: "ByLocationRoute",
+            routeTemplate: "api/Location/{locId}/{controller}",
+            defaults: new { locId = RouteParameter.Optional },
             constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
         }

@@ -22,6 +22,23 @@
 
             return deferred.promise;
         };
+
+        this.AddNew = function (newStory) {
+            var deferred = $q.defer();
+
+            $http({
+                url: 'http://' + serverName + '/api/Story',
+                method: "POST",
+                data: newStory
+            }).then(function (response) {
+                deferred.resolve(response);
+            },
+            function (response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        };
       
     }]);
 

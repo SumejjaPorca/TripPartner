@@ -52,7 +52,7 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
-        [Route("~/api/User/{{creatorId}}/Trip")]
+        [Route("~/api/User/{creatorId}/Trip")]
         [HttpGet]
         [AllowAnonymous]
         // GET api/User/dsfs1f/Trip
@@ -64,6 +64,29 @@ namespace TripPartner.WebAPI.Controllers
             try
             {
                 List<TripVM> trips = _mngr.getByUserId(creatorId);
+                responseMsg = _helper.CreateCustomResponseMsg(trips, HttpStatusCode.OK);
+
+            }
+            catch (Exception e)
+            {
+                responseMsg = _errHelper.CreateCustomResponseMsg(new HttpError(e.Message), HttpStatusCode.BadRequest);
+            }
+            response = ResponseMessage(responseMsg);
+            return response;
+        }
+
+        [Route("~/api/Location/{locId}/Trip")]
+        [HttpGet]
+        [AllowAnonymous]
+        // GET api/Location/343/Trip
+        public IHttpActionResult GetByLocationId(int locId)
+        {
+            IHttpActionResult response;
+            HttpResponseMessage responseMsg;
+
+            try
+            {
+                List<TripVM> trips = _mngr.getByLocationId(locId);
                 responseMsg = _helper.CreateCustomResponseMsg(trips, HttpStatusCode.OK);
 
             }
@@ -104,6 +127,28 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
+        [Route("")]
+        [AllowAnonymous]
+        [HttpGet]
+        // GET api/Trip
+        public IHttpActionResult GetAll()
+        {
+            IHttpActionResult response;
+            HttpResponseMessage responseMsg;
+
+            try
+            {
+                List<TripVM> trips = _mngr.GetAll();
+                responseMsg = _helper.CreateCustomResponseMsg(trips, HttpStatusCode.OK);
+
+            }
+            catch (Exception e)
+            {
+                responseMsg = _errHelper.CreateCustomResponseMsg(new HttpError(e.Message), HttpStatusCode.BadRequest);
+            }
+            response = ResponseMessage(responseMsg);
+            return response;
+        }
 
        
     }

@@ -1,10 +1,7 @@
 ﻿(function (tripModule) {
 
     tripModule.controller('byLocCtrl', ['$scope', 'TripManager', 'LocationManager', '$state', '$stateParams', function ($scope, mngr, locMngr, $state, $stateParams) {
-
-       
-        init();
-
+        
         var init = function () {
             $scope.message = "";
             var locationAddress = "";
@@ -25,6 +22,8 @@
                     $scope.message = "Trips around " + locationAddress + "were not found."
                 });
         }
+
+        init();
 
 
     }]);

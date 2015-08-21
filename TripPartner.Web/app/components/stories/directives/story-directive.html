@@ -1,13 +1,27 @@
-﻿<ul class="pager">
-    <li class="previous"><a href="" ng-disabled="serial == 0" ng-click="Previous()">← Previous Story</a></li>
-    <h2>{{stories[serial].Title}}</h2>
-    <div class="well well-lg">
-        <p>Story made: {{stories[serial].DateMade}} </p>
-        <p>Rating: {{stories[serial].Rating}}</p>
-        <p>Date when it happened: {{stories[serial].Date}}</p>
-        <a sref="trips">See this Trip</a>
-        <p><em>{{stories[serial].Text}}</em></p>
-        <p>Story By: <a sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
+﻿<div class="container-fluid">
+    <div class="row vertical-align">
+        <div class="col-sm-1 pager-btn-x noselect" ng-class="{disabled:serial==0}" ng-click="Previous()">«</div>
+
+        <div class="col-sm-10">
+            <div id="story-panel" class="panel panel-primary">
+                <div class="panel-heading panel-heading-lg-x">{{stories[serial].Title}} <br /><small>Posted on: {{stories[serial].DateMade | date:"d MMM yyyy"}}</small></div>
+                <div class="panel-body">
+                    <p><small>Story By:</small> <a sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
+                    <p><small>Happend on:</small> {{stories[serial].Date | date:"d MMM yyyy"}}</p>
+                    <p>{{stories[serial].Text}}</p>
+
+                    <!--<p>Story made: {{stories[serial].DateMade}} </p>-->
+                    <p><small>Rating:</small> {{stories[serial].Rating}}</p>
+                    <!--<a sref="trips">See this Trip</a>-->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10 btn btn-primary">See this trip</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-1 pager-btn-x noselect" ng-class="{disabled:stories.length == serial + 1}" ng-click="Next()">»</div>
     </div>
-    <li class="next"><a href="" ng-disabled="stories.length == serial + 1" ng-click="Next()">Next Story →</a></li>
-</ul>
+</div>

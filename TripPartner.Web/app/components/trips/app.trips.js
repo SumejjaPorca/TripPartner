@@ -20,6 +20,11 @@
                                  }]
                              }
                          })
+                          .state('trips.all', {
+                              url: '/all',
+                              templateUrl: '/app/components/trips/partials/all.html',
+                              controller: 'allCtrl'
+                             })
                          .state('trips.byUser', {
                              url: '/byUser/{userId}',
                              templateUrl: '/app/components/trips/partials/grid.html',
@@ -90,13 +95,13 @@
                             controller: ['$scope', function ($scope) {
                                 $scope.Next = function () {
                                     $scope.serial = $scope.serial + 1;
-                                    mngr.getDetailed(trips[serial].Id).then(function (response) {
+                                    mngr.getById(trips[serial].Id).then(function (response) {
                                         trips[serial] = response.data;
                                     });
                                 }
                                 $scope.Previous = function () {
                                     $scope.serial = $scope.serial - 1;
-                                    mngr.getDetailed(trips[serial].Id).then(function (response) {
+                                    mngr.getById(trips[serial].Id).then(function (response) {
                                         trips[serial] = response.data;
                                     });
                                 }

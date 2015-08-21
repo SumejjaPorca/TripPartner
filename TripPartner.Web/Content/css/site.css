@@ -9,11 +9,68 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
       padding-top: 40px;
-  xpadding-bottom: 10px;
+   padding-bottom: 10px;
 }
 
+.row-space {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
 
+a{
+    cursor: pointer;
+}
 
+.panel-heading-lg-x{
+    font-size: 20px;
+}
+
+.pager-btn-x{
+    font-size: 36px;
+    cursor: pointer;
+    background-color: transparent;
+
+}
+
+.pager-btn-x:hover{
+    background-color: #eeeeff;
+}
+
+.pager-btn-x.disabled{
+    cursor:not-allowed;
+    color: #aaaaaa;
+}
+
+.pager-btn-x.disabled:hover{
+    background-color: transparent;
+}
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+#story-panel{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+    display: flex;
+    align-items: center;     /* Align the flex-items vertically */
+    justify-content: center; /* Optional, to align inner flex-items 
+                              horizontally within the column  */
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 #footer {
     position: absolute;
     bottom: 0;

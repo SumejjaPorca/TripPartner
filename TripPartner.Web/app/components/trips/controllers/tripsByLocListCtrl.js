@@ -3,7 +3,6 @@
     tripModule.controller('tripsByLocListCtrl', ['$scope', 'TripManager', 'LocationManager', '$state', '$stateParams', 'id', function ($scope, mngr, locMngr, $state, $stateParams, id) {
 
 
-        init();
 
         var init = function () {
             $scope.message = "";
@@ -42,8 +41,8 @@
                     $scope.Serial = $stateParams.serial;
             }
         }
-
-
+        
+        init();
     }]);
 
 }(angular.module("app.trips")));

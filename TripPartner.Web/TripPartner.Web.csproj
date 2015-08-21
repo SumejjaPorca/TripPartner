@@ -86,6 +86,7 @@
     <Content Include="app\components\stories\services\Story.js" />
     <Content Include="app\components\stories\services\StoryManager.js" />
     <Content Include="app\components\trips\app.trips.js" />
+    <Content Include="app\components\trips\controllers\allCtrl.js" />
     <Content Include="app\components\trips\controllers\byLocCtrl.js" />
     <Content Include="app\components\trips\controllers\byUserCtrl.js" />
     <Content Include="app\components\trips\controllers\tripDetailCtrl.js" />
@@ -95,12 +96,15 @@
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />
     <Content Include="app\components\trips\directives\trips-list.html" />
+    <Content Include="app\components\trips\partials\all.html" />
     <Content Include="app\components\trips\partials\grid.html" />
     <Content Include="app\components\trips\partials\main.html" />
     <Content Include="app\components\trips\partials\trip-detail.html" />
     <Content Include="app\components\trips\partials\list.html" />
     <Content Include="app\components\trips\services\Location.js" />
     <Content Include="app\components\trips\services\LocationManager.js" />
+    <Content Include="app\components\trips\services\NewLocation.js" />
+    <Content Include="app\components\trips\services\NewTrip.js" />
     <Content Include="app\components\trips\services\Trip.js" />
     <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />
