@@ -1,4 +1,4 @@
-﻿<div class="panel panel-default">
+﻿<div class="panel panel-default" ng-if="message == ''">
     <div class="panel-heading">User info</div>
     <div class="panel-body">
         <label class="col-lg-2 control-label">Username:</label>
@@ -11,3 +11,4 @@
         </div>
     </div>
 </div>
+<p ng-if="message != ''">{{message}}</p>

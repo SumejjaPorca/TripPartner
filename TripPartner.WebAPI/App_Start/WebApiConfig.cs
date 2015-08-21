@@ -31,11 +31,18 @@ namespace TripPartner.WebAPI
             );
 
             config.Routes.MapHttpRoute(
-                 name: "MyRoute",
+                 name: "MyIndexRoute",
                  routeTemplate: "api/{controller}/{index}",
                  defaults: new { index = RouteParameter.Optional },
                  constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
                  );
+
+            config.Routes.MapHttpRoute(
+            name: "MyRoute",
+            routeTemplate: "api/{controller}/{index}",
+            defaults: new { index = RouteParameter.Optional },
+            constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }

@@ -9,6 +9,19 @@
 
         init();
 
+        this.getUserInfo = function (userId) {
+            var deferred = $q.defer();
+
+            $http.get('http://' + serverName + '/api/Account/UserInfo/' + userId).then(
+                function (response) {
+                    deferred.resolve(response.data);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
+        };
+
         this.Login = function (loginModel) {
 
             var deferred = $q.defer();

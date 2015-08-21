@@ -1,5 +1,5 @@
 ﻿<ul class="pager">
-    <li class="previous"><button ng-disabled="serial == 0" ng-click="Previous">← Previous Story</button></li>
+    <li class="previous"><a href="" ng-disabled="serial == 0" ng-click="Previous()">← Previous Story</a></li>
     <h2>{{stories[serial].Title}}</h2>
     <div class="well well-lg">
         <p>Story made: {{stories[serial].DateMade}} </p>
@@ -9,5 +9,5 @@
         <p><em>{{stories[serial].Text}}</em></p>
         <p>Story By: <a sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
     </div>
-    <li class="next"><button ng-disabled="stories.length == serial + 1" ng-click="Next">Next Story →</button></li>
+    <li class="next"><a href="" ng-disabled="stories.length == serial + 1" ng-click="Next()">Next Story →</a></li>
 </ul>

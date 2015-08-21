@@ -220,9 +220,11 @@
     <Compile Include="Binding_Models\NewLocVM.cs" />
     <Compile Include="Binding_Models\NewStoryVM.cs" />
     <Compile Include="Binding_Models\NewTripVM.cs" />
+    <Compile Include="Binding_Models\UserInfoVM.cs" />
     <Compile Include="BL\LocationManager.cs" />
     <Compile Include="BL\StoryManager.cs" />
     <Compile Include="BL\TripManager.cs" />
+    <Compile Include="BL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TripController.cs" />

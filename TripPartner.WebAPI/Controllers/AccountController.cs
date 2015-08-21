@@ -17,6 +17,10 @@ using TripPartner.WebAPI.Models;
 using TripPartner.WebAPI.Providers;
 using TripPartner.WebAPI.Results;
 using System.Web.Http.Cors;
+using TripPartner.WebAPI.Data;
+using TripPartner.WebAPI.Binding_Models;
+using TripPartner.WebAPI.BL;
+using System.Net;
 
 namespace TripPartner.WebAPI.Controllers
 {
@@ -28,9 +32,17 @@ namespace TripPartner.WebAPI.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _db;
+        HttpResponseHelper<UserInfoVM> _helper;
+        HttpResponseHelper<HttpError> _errHelper;
+        private UserManager _mngr;
 
         public AccountController()
         {
+            _db = new ApplicationDbContext();
+            _mngr = new UserManager(_db);
+            _helper = new HttpResponseHelper<UserInfoVM>(this);
+            _errHelper = new HttpResponseHelper<HttpError>(this);
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -38,6 +50,10 @@ namespace TripPartner.WebAPI.Controllers
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            _db = new ApplicationDbContext();
+            _mngr = new UserManager(_db);
+            _helper = new HttpResponseHelper<UserInfoVM>(this);
+            _errHelper = new HttpResponseHelper<HttpError>(this);
         }
 
         public ApplicationUserManager UserManager
@@ -68,6 +84,31 @@ namespace TripPartner.WebAPI.Controllers
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
         }
+
+        // GET api/Account/UserInfo
+        [AllowAnonymous]
+        [Route("UserInfo/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetUserInfo(string userId)
+        {
+            IHttpActionResult response;
+            HttpResponseMessage responseMsg;
+
+            try
+            {
+                UserInfoVM user = _mngr.getUserInfo(userId);
+                responseMsg = _helper.CreateCustomResponseMsg(user, HttpStatusCode.OK);
+
+            }         
+            catch(Exception e)
+            {
+                responseMsg = _errHelper.CreateCustomResponseMsg(new HttpError(e.Message), HttpStatusCode.BadRequest);
+            }
+            response = ResponseMessage(responseMsg);
+
+            return response;
+        }
+
 
         // POST api/Account/Logout
         [Route("Logout")]
