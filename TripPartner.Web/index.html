@@ -21,7 +21,7 @@
                 <div class="navbar-header">
                     <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded"></button>
                     <a class="navbar-brand" href="#/home">Home</a>
-                    <a class="navbar-brand" href="#/stories">Stories</a>
+                    <a class="navbar-brand" href="#/stories/all">Stories</a>
                     <a class="navbar-brand" href="#/trips/all">Trips</a>
                 </div>
                 <my-navbar account-manager="mngr"></my-navbar>
@@ -73,6 +73,8 @@
         <script src="app/components/stories/app.stories.js"></script>
         <script src="app/components/stories/services/Story.js"></script>
         <script src="app/components/stories/services/StoryManager.js"></script>
+        <script src="app/components/stories/controllers/allStoriesCtrl.js"></script>
+        <script src="app/components/stories/controllers/listCtrl.js"></script>
 
         <!-- Trips module -->
         <script src="app/components/trips/app.trips.js"></script>
@@ -87,7 +89,7 @@
         <script src="app/components/trips/controllers/tripDetailCtrl.js"></script>
         <script src="app/components/trips/controllers/tripsByLocListCtrl.js"></script>
         <script src="app/components/trips/controllers/tripsByUserListCtrl.js"></script>
-        <script src="app/components/trips/controllers/allCtrl.js"></script>
+        <script src="app/components/trips/controllers/allTripsCtrl.js"></script>
 
         <!-- Load custom filters -->
         <!-- Load custom directives -->

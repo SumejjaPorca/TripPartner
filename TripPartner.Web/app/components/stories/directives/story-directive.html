@@ -6,7 +6,7 @@
             <div id="story-panel" class="panel panel-primary">
                 <div class="panel-heading panel-heading-lg-x">{{stories[serial].Title}} <br /><small>Posted on: {{stories[serial].DateMade | date:"d MMM yyyy"}}</small></div>
                 <div class="panel-body">
-                    <p><small>Story By:</small> <a sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
+                    <p><small>Story By:</small> <a ui-sref="profile({userId:stories[serial].CreatorId, own:false})">{{stories[serial].CreatorUsername}}</a></p>
                     <p><small>Happend on:</small> {{stories[serial].Date | date:"d MMM yyyy"}}</p>
                     <p>{{stories[serial].Text}}</p>
 
@@ -15,7 +15,7 @@
                     <!--<a sref="trips">See this Trip</a>-->
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-2 col-md-offset-10 btn btn-primary">See this trip</div>
+                            <div class="col-md-2 col-md-offset-10 btn btn-primary"><a ui-sref="trips.details({tripId:stories[serial].TripIdloc})">See this trip</a></div>
                         </div>
                     </div>
                 </div>

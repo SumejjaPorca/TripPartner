@@ -6,7 +6,7 @@
 
 
         var init = function () {
-            if ($stateParams.own == true)
+            if ($stateParams.own == 'true')
                 $scope.User = mngr.getCurrentUser();
             else {
                 mngr.getUserInfo($stateParams.userId).then(

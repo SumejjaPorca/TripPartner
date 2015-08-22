@@ -23,7 +23,7 @@
                           .state('trips.all', {
                               url: '/all',
                               templateUrl: '/app/components/trips/partials/all.html',
-                              controller: 'allCtrl'
+                              controller: 'allTripsCtrl'
                              })
                          .state('trips.byUser', {
                              url: '/byUser/{userId}',

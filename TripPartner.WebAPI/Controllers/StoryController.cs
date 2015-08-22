@@ -109,7 +109,7 @@ namespace TripPartner.WebAPI.Controllers
 
             try
             {
-                if (index == "")
+                if (index == "" || index == "all")
                     index = "DateMade";
                 List<StoryVM> stories = _mngr.getAll(index);
                 responseMsg = _helper.CreateCustomResponseMsg(stories, HttpStatusCode.OK);

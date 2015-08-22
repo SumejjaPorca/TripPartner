@@ -1,6 +1,6 @@
 ﻿(function (tripModule) {
 
-    tripModule.controller('allCtrl', ['$scope', 'TripManager', '$state', function ($scope, mngr,  $state) {
+    tripModule.controller('allTripsCtrl', ['$scope', 'TripManager', '$state', function ($scope, mngr,  $state) {
 
 
         var init = function () {
