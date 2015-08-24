@@ -3,6 +3,8 @@
     angular.module('app.account', ['LocalStorageModule'])
                      .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
 
+                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
                          $stateProvider
                     .state('login', {
                         url: '/login',

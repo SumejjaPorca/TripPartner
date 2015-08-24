@@ -2,7 +2,7 @@
     'use strict';
     var app = angular.module('app.stories', ['ui.router', 'app.account', 'app.trips'])
                      .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
-                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
                          $stateProvider
                     .state('stories', {

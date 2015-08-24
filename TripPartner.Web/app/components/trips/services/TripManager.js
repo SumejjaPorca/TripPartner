@@ -75,8 +75,10 @@
             $http({
                 url: 'http://' + serverName + '/api/Trip',
                 method: "POST",
-                contentType: "application/json",
-                data: angular.toJson(newTrip)
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: newTrip
             }).then(function (response) {
                 deferred.resolve(response);
             },

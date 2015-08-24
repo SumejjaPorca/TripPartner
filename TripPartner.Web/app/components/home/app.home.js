@@ -3,8 +3,7 @@
     var app = angular.module('app.home', ['ui.router', 'app.account', 'app.stories'])
                      .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
 
-                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
+                        
 
                          $stateProvider
                     .state('home', {

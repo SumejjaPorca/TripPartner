@@ -55,6 +55,9 @@
             $http({
                 url: 'http://' + serverName + '/api/Story',
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: newStory
             }).then(function (response) {
                 deferred.resolve(response);
