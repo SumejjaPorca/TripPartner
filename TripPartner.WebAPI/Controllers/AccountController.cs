@@ -308,7 +308,7 @@ namespace TripPartner.WebAPI.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Email);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Email, user.Id);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else

@@ -1,14 +1,9 @@
 ﻿(function (module) {
 
     module.service('AccountManager', ['User', '$http', 'serverName', '$q', 'localStorageService', function (User, $http, serverName, $q, localStorageService) {
-        var currentUser = undefined;
-
-        var init = function () {
-            currentUser = new User("", "", "");
-        }
-
-        init();
-
+      
+        var currentUser = new User({ username: "", email: "", password: "", id: "" });
+  
         this.getUserInfo = function (userId) {
             var deferred = $q.defer();
 
@@ -31,21 +26,20 @@
                 method: "POST",
                 data: 'grant_type=password&username=' + loginModel.username + '&password=' + loginModel.password
             }).then(function (response) {
-                loginModel.email = response.data.email;
-                setCurrentUser(loginModel);
-                localStorageService.set('authorizationData', { token: response.data.access_token, username: loginModel.username });
+                localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, email: response.data.email, id: response.data.id});
+                setCurrentUser(response.data);
                 deferred.resolve(response);
             }, 
             function (response) {
+                localStorageService.set('authorizationData', { token: "", userName: "" });
                 currentUser.IsLoggedIn = false;
-                localStorageService.set('authorizationData', { token: "", username: "" });
                 deferred.reject(response);
             });
 
             return deferred.promise;
         };
         this.Logout = function () {
-            localStorageService.set('authorizationData', { token: "", username: "" });
+            localStorageService.set('authorizationData', { token: "", userName: "" });
             currentUser.IsLoggedIn = false;
         };
         this.Register = function (registerModel) { 
@@ -59,20 +53,25 @@
                  deferred.resolve(response);
             },
             function (response) {
+                localStorageService.set('authorizationData', { token: "", userName: "" });
                 currentUser.IsLoggedIn = false;
-                localStorageService.set('authorizationData', { token: "", username: "" });
                 deferred.reject(response);
             });
 
             return deferred.promise;
         };
         this.getCurrentUser = function () {
+            var data = localStorageService.get('authorizationData');
+            if (currentUser.Id == "" && data.token != "")
+            {
+                setCurrentUser(data);
+            }
             return currentUser;
         };
         var setCurrentUser = function (loginModel) {
-            currentUser.Username = loginModel.username;
+            currentUser.Username = loginModel.userName;
             currentUser.Email = loginModel.email;
-            currentUser.Password = loginModel.password;
+            currentUser.Id = loginModel.id;
             currentUser.IsLoggedIn = true;
         }
     }]);

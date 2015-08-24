@@ -58,6 +58,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\stories\controllers\addStoryCtrl.js" />
+    <Content Include="app\components\stories\partials\add.html" />
+    <Content Include="shared\services\angular-google-maps.min.js.map">
+      <DependentUpon>angular-google-maps.min.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -92,6 +97,7 @@
     <Content Include="app\components\stories\services\Story.js" />
     <Content Include="app\components\stories\services\StoryManager.js" />
     <Content Include="app\components\trips\app.trips.js" />
+    <Content Include="app\components\trips\controllers\addTripCtrl.js" />
     <Content Include="app\components\trips\controllers\allTripsCtrl.js" />
     <Content Include="app\components\trips\controllers\byLocCtrl.js" />
     <Content Include="app\components\trips\controllers\byUserCtrl.js" />
@@ -102,6 +108,7 @@
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />
     <Content Include="app\components\trips\directives\trips-list.html" />
+    <Content Include="app\components\trips\partials\add.html" />
     <Content Include="app\components\trips\partials\all.html" />
     <Content Include="app\components\trips\partials\grid.html" />
     <Content Include="app\components\trips\partials\main.html" />
@@ -109,8 +116,7 @@
     <Content Include="app\components\trips\partials\list.html" />
     <Content Include="app\components\trips\services\Location.js" />
     <Content Include="app\components\trips\services\LocationManager.js" />
-    <Content Include="app\components\trips\services\NewLocation.js" />
-    <Content Include="app\components\trips\services\NewTrip.js" />
+    <Content Include="app\components\trips\services\GeolocationService.js" />
     <Content Include="app\components\trips\services\Trip.js" />
     <Content Include="app\components\trips\services\TripManager.js" />
     <Content Include="app\directives\my-navbar.html" />
@@ -123,6 +129,11 @@
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="shared\partials\error.html" />
+    <Content Include="shared\services\angular-google-maps.js" />
+    <Content Include="shared\services\angular-google-maps.min.js">
+      <DependentUpon>angular-google-maps.js</DependentUpon>
+    </Content>
+    <Content Include="shared\services\lodash.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

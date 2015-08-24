@@ -7,8 +7,15 @@
                     .state('trips', {
                         abstract: true,
                         url: '/trips',
-                        templateUrl: '/app/components/trips/partials/main.html'
+                        templateUrl: '/app/components/trips/partials/main.html',
+                        controller: 'tripsCtrl'
                     })
+                        .state('trips.add', {
+                        url: '/add',
+                        templateUrl: '/app/components/trips/partials/add.html',
+                        controller: 'addTripCtrl'
+                    })
+
                          .state('trips.byLoc', {
                              url: '/byLoc/{locId:int}',
                              templateUrl: '/app/components/trips/partials/grid.html',
@@ -57,6 +64,9 @@
                              });
                      }
                      ])
+                     .controller('tripsCtrl', ['$scope', function ($scope) {
+                         $scope.onloadfunc = function () { }
+                     }])
                      .run(function () {
                      })
                     .directive('smallTrip', function () { 
@@ -95,14 +105,21 @@
                             controller: ['$scope', function ($scope) {
                                 $scope.Next = function () {
                                     $scope.serial = $scope.serial + 1;
-                                    mngr.getById(trips[serial].Id).then(function (response) {
-                                        trips[serial] = response.data;
+                                    mngr.getById(trips[$scope.serial].Id).then(function (response) {
+                                        $scope.trips[$scope.serial] = response.data;
                                     });
+                                }
+                                $scope.HasNext = function () {
+                                    return $scope.serial < $scope.trips.length - 1;
+                                }
+
+                                $scope.HasPrevious = function () {
+                                    return $scope.serial > 0;
                                 }
                                 $scope.Previous = function () {
                                     $scope.serial = $scope.serial - 1;
-                                    mngr.getById(trips[serial].Id).then(function (response) {
-                                        trips[serial] = response.data;
+                                    mngr.getById(trips[$scope.serial].Id).then(function (response) {
+                                        $scope.trips[$scope.serial] = response.data;
                                     });
                                 }
                             }]

@@ -44,7 +44,7 @@ namespace TripPartner.WebAPI.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName, user.Email);
+            AuthenticationProperties properties = CreateProperties(user.UserName, user.Email, user.Id);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -86,12 +86,13 @@ namespace TripPartner.WebAPI.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, string email)
+        public static AuthenticationProperties CreateProperties(string userName, string email, string id)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 { "userName", userName }, 
-                { "email", email}
+                { "email", email},
+                { "id", id}
             };
             return new AuthenticationProperties(data);
         }
