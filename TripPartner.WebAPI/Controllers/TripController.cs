@@ -104,8 +104,13 @@ namespace TripPartner.WebAPI.Controllers
         [Route("")]
         [Authorize]
         [HttpPost]
-        public IHttpActionResult Add(NewTripVM trip)
+        public IHttpActionResult Add([FromBody]NewTripVM trip)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 

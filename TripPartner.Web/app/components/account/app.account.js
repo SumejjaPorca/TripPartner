@@ -21,7 +21,7 @@
                              params: {userId: null, own:'true'}
                          });
                          $httpProvider.interceptors.push('authInterceptor');
-                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
 
 
                      }

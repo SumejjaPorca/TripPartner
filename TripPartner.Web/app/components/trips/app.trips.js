@@ -1,7 +1,8 @@
 ﻿(function () {
     'use strict';
     var app = angular.module('app.trips', ['ui.router'])
-                     .config(['$stateProvider', function ($stateProvider) {
+                     .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
+                         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
 
                          $stateProvider
                     .state('trips', {

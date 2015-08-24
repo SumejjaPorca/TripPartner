@@ -130,6 +130,11 @@ namespace TripPartner.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult Add(NewStoryVM story)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             IHttpActionResult response;
             HttpResponseMessage responseMsg;
 
