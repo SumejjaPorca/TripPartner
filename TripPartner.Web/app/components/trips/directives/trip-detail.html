@@ -1,15 +1,22 @@
-﻿<div class="well well-sm">
-    <label class="col-lg-2 control-label">Trip from: </label>
-    <div class="col-lg-10">
-        <h4>{{trip.Origin.Address}}</h4>
+﻿<div id="story-panel" class="panel panel-primary">
+    <div class="panel-heading panel-heading-lg-x">
+        <p>
+            <small>From: </small><br />{{trip.Origin.Address}}
+        </p>
+        <p>
+            <small>To: </small><br />{{trip.Destination.Address}}
+        </p>
     </div>
-    <label class="col-lg-2 control-label">Trip to: </label>
-    <div class="col-lg-10">
-        <h4>{{trip.Destination.Address}}</h4>
-    </div>
-    <!--TODO: add more stuff details here-->
-    <label class="col-lg-2 control-label">By: </label>
-    <div class="col-lg-10">
-        <a sref="profile({userId:trip.Creatorid, own:false})"><h4>{{trip.CreatorUsername}}</h4></a>
+    <div class="panel-body">
+        <p><small>Trip By:</small> <a sref="profile({userId:trip.CreatorId})">{{trip.CreatorUsername}}</a></p>
+        <p>Happened:</p>
+        <p>
+            <small>Trip started at: </small><br />{{trip.DateStarted | date:"d MMM yyyy"}}
+        </p>
+        <p>
+            <small>Trip ended at: </small><br />{{trip.DateEnded | date:"d MMM yyyy"}}
+        </p>
+
+
     </div>
 </div>

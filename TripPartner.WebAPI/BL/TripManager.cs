@@ -135,6 +135,8 @@ namespace TripPartner.WebAPI.BL
                    OriginId = origin.Id,
                });
 
+            _db.SaveChanges();
+
             return new TripVM
             {
                 Id = t.Id,
@@ -178,19 +180,7 @@ namespace TripPartner.WebAPI.BL
             return _db.Trips.Count(t => 1 == 1);
         }
 
-        public bool DeleteById(int id)
-        {
-            try
-            {
-                Trip trip = _db.Trips.Single(t => t.Id == id);
-                _db.Trips.Remove(trip);
-                return true;
-            }
-            catch(Exception)
-            {
-                throw new TripNotFoundException(id);
-            }
-        }
+ 
 
         private ApplicationUser getUser(string id)
         {
@@ -200,5 +190,41 @@ namespace TripPartner.WebAPI.BL
             return user;
         }
 
+
+        public List<TripVM> getByLatLng(double lat, double lng)
+        {
+            Location loc = _mngr.getByLatLng(new NewLocVM{
+                                 Lat=lat, Long=lng});
+            if (loc == null)
+                return new List<TripVM>();
+          
+
+            var trips = _db.Trips.Where(t => t.DestinationId == loc.Id || t.OriginId == loc.Id)
+                                .Include(t => t.Creator)
+                                .Include(t => t.Destination)
+                                .Include(t => t.Origin)
+                                .Select(t => new TripVM
+                                {
+                                    CreatorId = t.CreatorId,
+                                    CreatorUsername = t.Creator.UserName,
+                                    DateEnded = t.DateEnded,
+                                    DateStarted = t.DateStarted,
+                                    Destination = new LocationVM
+                                    {
+                                        Address = t.Destination.Address,
+                                        Lat = t.Destination.LatLng.Latitude.Value,
+                                        Long = t.Destination.LatLng.Longitude.Value
+                                    },
+                                    Origin = new LocationVM
+                                    {
+                                        Address = t.Origin.Address,
+                                        Lat = t.Origin.LatLng.Latitude.Value,
+                                        Long = t.Origin.LatLng.Longitude.Value
+                                    },
+                                    Id = t.Id
+                                }).ToList();
+
+            return trips;
+        }
     }
 }

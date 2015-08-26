@@ -118,6 +118,8 @@ namespace TripPartner.WebAPI.BL
                 Rates = 0
             });
 
+            _db.SaveChanges();
+
             return new StoryVM {
                 Title = story.Title,
                 Id = s.Id,

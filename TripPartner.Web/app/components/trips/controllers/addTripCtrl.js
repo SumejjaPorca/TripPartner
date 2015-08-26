@@ -47,12 +47,16 @@
             geoService.getLatLng($scope.newTrip.Destination.Address).then(
                 function (response) {
                     $scope.destMarker.changePosition(response);
+                    $scope.newTrip.Destination.Lat = response.G;
+                    $scope.newTrip.Destination.Long = response.K;
             });
         }
         $scope.OriginChanged = function () {
             geoService.getLatLng($scope.newTrip.Origin.Address).then(
                 function (response) {
                     $scope.originMarker.changePosition(response);
+                    $scope.newTrip.Origin.Lat = response.G;
+                    $scope.newTrip.Origin.Long = response.K;
                 });
         }
 

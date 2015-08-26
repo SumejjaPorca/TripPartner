@@ -1,14 +1,29 @@
-﻿<div class="well well-sm">
-    <label class="col-lg-2 control-label">Trip from: </label>
-    <div class="col-lg-10">
-        <h4>{{trip.Origin.Address}}</h4>
-    </div>
-    <label class="col-lg-2 control-label">Trip to: </label>
-    <div class="col-lg-10">
-        <h4>{{trip.Destination.Address}}</h4>
-    </div>
-    <label class="col-lg-2 control-label">By: </label>
-    <div class="col-lg-10">
-        <a sref="profile({userId:trip.CreatorId, own:false})"><h4>{{trip.CreatorUsername}}</h4></a>
+﻿﻿<div class="panel panel-primary small-trip-panel">
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row row-space">
+                <p class="col-md-2">From:</p>
+                <div class="col-md-10">
+                    {{trip.Origin.Address}}
+                </div>
+            </div>
+
+            <div class="row row-space">
+                <p class="col-md-2">To:</p>
+                <div class="col-md-10">
+                    {{trip.Destination.Address}}
+                </div>
+            </div>
+
+            <div class="row row-space">
+                <p class="col-md-2">By:</p>
+                <div class="col-md-10">
+                    <a ui-sref="profile({UserId:trip.Creatorid, own:false})">{{trip.CreatorUsername}}</a>
+                </div>
+            </div>
+            <!--<div class="row row-space">
+                <a ui-sref="trips.byLoc.details" class="col-md-4 col-md-offset-8 btn btn-info">Details</a>
+            </div>-->
+        </div>
     </div>
 </div>

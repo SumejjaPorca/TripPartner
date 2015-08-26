@@ -11,6 +11,11 @@ using System.Web.Http;
 using System.Net;
 using System.Net.Http;
 using TripPartner.WebAPI.BL;
+using System.Linq;
+using TripPartner.WebAPI.Exceptions;
+using TripPartner.WebAPI.Models;
+using TripPartner.WebAPI.Domain_Models;
+using System.Data.Entity;
 
 namespace TripPartner.WebAPI.Test
 {
@@ -35,7 +40,7 @@ namespace TripPartner.WebAPI.Test
 
             _newTrip = new NewTripVM
             {
-                CreatorId = "",
+                CreatorId = _db.Users.FirstOrDefault().Id,
                 DateEnded = DateTime.Now,
                 DateStarted = DateTime.Now,
                 Destination = new NewLocVM
@@ -59,6 +64,8 @@ namespace TripPartner.WebAPI.Test
                 }; 
             _db.Locations.Add(addedLoc);
 
+            _db.SaveChanges();
+
             addedTrip = new Trip
             {
                 DestinationId = addedLoc.Id,
@@ -68,6 +75,8 @@ namespace TripPartner.WebAPI.Test
             _db.Trips.Add(addedTrip);
 
             _newlyAddedTrips.Add(addedTrip);
+
+            _db.SaveChanges();
         }
 
         //TO DO

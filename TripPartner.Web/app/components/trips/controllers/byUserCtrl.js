@@ -1,12 +1,15 @@
 ﻿(function (tripModule) {
 
-    tripModule.controller('byUserCtrl', ['$scope', 'TripManager', 'AccountManager', '$state', '$stateParams', function ($scope, mngr, accMngr, $state, $stateParams) {
-
-
+    tripModule.controller('byUserCtrl', ['$scope', 'TripManager', 'AccountManager', '$stateParams', function ($scope, mngr, accMngr, $stateParams) {
+        
+        $scope.Serial = $stateParams.serial;
+        $scope.message = "";
 
         var init = function () {
-            $scope.message = "";
-            var user = {username: "", email: "", userId: ""};
+            var user = { username: "", email: "", userId: "" };
+
+            if ($scope.Serial == undefined)
+                $scope.Serial = -1;
 
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.

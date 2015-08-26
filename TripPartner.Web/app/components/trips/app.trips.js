@@ -1,12 +1,12 @@
 ﻿(function () {
     'use strict';
-    var app = angular.module('app.trips', ['ui.router'])
+    var app = angular.module('app.trips', ['ui.router', 'app.account'])
                      .config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
                         
                          $stateProvider
                     .state('trips', {
-                        abstract: true,
                         url: '/trips',
+                        abstract:true,
                         templateUrl: '/app/components/trips/partials/main.html',
                         controller: 'tripsCtrl'
                     })
@@ -17,10 +17,10 @@
                     })
 
                          .state('trips.byLoc', {
-                             url: '/byLoc/{locId:int}',
-                             templateUrl: '/app/components/trips/partials/grid.html',
+                             url: '/byLoc/?locId?serial',
+                             templateUrl: '/app/components/trips/partials/tripsByLoc.html',
                              controller: 'byLocCtrl',
-                             params: { locId: undefined },
+                             params: { locId: undefined, serial: undefined },
                              resolve: {
                                  id: ['$stateParams', function ($stateParams) {
                                      return $stateParams.locId;
@@ -28,34 +28,22 @@
                              }
                          })
                           .state('trips.all', {
-                              url: '/all',
+                              url: '/all?serial',
                               templateUrl: '/app/components/trips/partials/all.html',
-                              controller: 'allTripsCtrl'
+                              controller: 'allTripsCtrl',
+                              params: {serial: undefined}
                              })
                          .state('trips.byUser', {
-                             url: '/byUser/{userId}',
+                             url: '/byUser/{userId}?serial',
                              templateUrl: '/app/components/trips/partials/grid.html',
                              controller: 'byUserCtrl',
-                             params: { userId: undefined },
+                             params: { userId: undefined, serial: undefined },
                              resolve: {
                                  id: ['$stateParams', function ($stateParams) {
                                      return $stateParams.userId;
                                  }]
                              }
                          })
-                        .state('trips.byLoc.details', {
-                            url: '/details/{serial:int}',
-                            templateUrl: '/app/components/trips/partials/list.html',
-                            controller: 'tripsByLocListCtrl',
-                            params: { trips: null, serial: null }
-                        })
-                        .state('trips.byUser.details', {
-                            url: '/details/{serial:int}',
-                            templateUrl: '/app/components/trips/partials/list.html',
-                            controller: 'tripsByUserListCtrl',
-                            params: { trips: null, serial: null }
-                        })
-
                              .state('trips.details', {
                                  url: '/details/{tripId:int}',
                                  templateUrl: '/app/components/trips/partials/trip-detail.html',
@@ -84,11 +72,15 @@
                             restrict: 'E',
                             scope: {
                                 trips: '=',
-                                title: '='
+                                serial: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-grid.html',
                             controller: ['$scope', function ($scope) {
-                               
+                                $scope.isNumber = angular.isNumber($scope.serial) && $scope.serial >= 0;
+                                $scope.show = function (index) {
+                                    $scope.serial = index;
+                                    $scope.isNumber = angular.isNumber($scope.serial) && $scope.serial >= 0;
+                                }
                             }]
                         }
                     })
@@ -97,17 +89,13 @@
                             restrict: 'E',
                             scope: {
                                 serial: '=',
-                                trips: '=',
-                                title: '=',
-                                mngr: '='
+                                trips: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-list.html',
                             controller: ['$scope', function ($scope) {
                                 $scope.Next = function () {
                                     $scope.serial = $scope.serial + 1;
-                                    mngr.getById(trips[$scope.serial].Id).then(function (response) {
-                                        $scope.trips[$scope.serial] = response.data;
-                                    });
+                                    return true;
                                 }
                                 $scope.HasNext = function () {
                                     return $scope.serial < $scope.trips.length - 1;
@@ -118,9 +106,7 @@
                                 }
                                 $scope.Previous = function () {
                                     $scope.serial = $scope.serial - 1;
-                                    mngr.getById(trips[$scope.serial].Id).then(function (response) {
-                                        $scope.trips[$scope.serial] = response.data;
-                                    });
+                                    return true;
                                 }
                             }]
                         }

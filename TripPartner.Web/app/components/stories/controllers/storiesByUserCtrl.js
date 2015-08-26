@@ -1,6 +1,6 @@
 ﻿(function (storyModule) {
 
-    storyModule.controller('allStoriesCtrl', ['$scope', 'StoryManager', '$stateParams', function ($scope, mngr, $stateParams) {
+    storyModule.controller('storiesByUserCtrl', ['$scope', 'StoryManager', '$stateParams', function ($scope, mngr, $stateParams) {
 
 
         var init = function () {
@@ -14,7 +14,7 @@
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
 
-            mngr.getAll('').then(
+            mngr.getByUserId($stateParams.userId).then(
                   function (response) {
                       $scope.Stories = response;
                       $scope.Title = "Stories";

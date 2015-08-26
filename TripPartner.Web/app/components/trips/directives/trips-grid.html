@@ -1,7 +1,12 @@
-﻿<div>
-    <ul> {{title}}
-        <li ng-repeat="trip in trips">
+﻿
+
+<div>
+    <div ng-if="isNumber">
+        <trips-list trips="trips" serial="serial"></trips-list>
+    </div>
+
+        <div class="col-md-4" ng-repeat="trip in trips">
             <small-trip trip="trip"></small-trip>
-        </li>
-    </ul>
+            <div ng-click="show($index)" class="btn btn-block btn-primary">Details</div>
+        </div>
 </div>

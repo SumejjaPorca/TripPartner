@@ -1,0 +1,21 @@
+﻿
+<div class="col-md-2">
+    <label for="loc">Find from/to place:</label>
+</div>
+<div class="col-md-2">
+    <input type="text" class="form-control" ng-change="LocationChanged()" data-ng-model="Loc.Address">
+    <button class="btn btn-sm btn-default" data-ng-click="Find()">Find</button>
+</div>
+
+<div class="col-md-6">
+    <div id="map"></div>
+</div>
+
+<div>
+    <h3>{{Title}}</h3>
+    <div ng-if="message != ''" class="alert alert-danger">
+        <h4>Error</h4>
+        <p>{{message}}</p>
+    </div>
+    <trips-grid trips="Trips" serial="Serial" ng-if="message == '' && $scope.Loc.Id != undefined"></trips-grid>
+</div>

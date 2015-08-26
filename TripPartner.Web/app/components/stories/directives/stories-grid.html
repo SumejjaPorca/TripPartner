@@ -1,7 +1,10 @@
 ﻿<div>
-    <ul>
-        <li ng-repeat="story in stories">
-            <small-story story="story"></small-story>
-        </li>
-    </ul>
+    <div ng-if="isNumber">
+        <story-directive stories="stories" serial="serial"></story-directive>
+    </div>
+
+    <div class="col-md-4" ng-repeat="story in stories">
+        <small-story story="story"></small-story>
+        <div ng-click="show($index)" class="btn btn-block btn-primary">Details</div>
+    </div>
 </div>

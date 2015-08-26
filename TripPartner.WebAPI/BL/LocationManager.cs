@@ -20,13 +20,16 @@ namespace TripPartner.WebAPI.BL
         }
 
         public LocationVM Add(NewLocVM loc) {
-            Location l = getLocation(loc);
+            Location l = getByLatLng(loc);
             if (l == null)
-             l =  _db.Locations.Add(new Location
+            l =  _db.Locations.Add(new Location
                 {
                     Address = loc.Address,
                     LatLng = CreatePoint(loc.Lat, loc.Long)
                 });
+
+            _db.SaveChanges();
+
             return new LocationVM
             {
                 Id = l.Id,
@@ -36,19 +39,7 @@ namespace TripPartner.WebAPI.BL
             };
         }
 
-        public bool DeleteById(int id)
-        {
-            try
-            {
-                Location loc = _db.Locations.Single(l => l.Id == id);
-                _db.Locations.Remove(loc);
-                return true;
-            }
-            catch (Exception)
-            {
-                throw new LocationNotFoundException(id);
-            }
-        }
+   
 
         public LocationVM GetById(int id)
         {
@@ -69,7 +60,7 @@ namespace TripPartner.WebAPI.BL
         {
             return _db.Locations.Count(l => 1 == 1);
         }
-        private Location getLocation(NewLocVM loc)
+        public Location getByLatLng(NewLocVM loc)
         {
             return _db.Locations.FirstOrDefault(l => l.LatLng.Latitude == loc.Lat && l.LatLng.Longitude == loc.Long);
         }

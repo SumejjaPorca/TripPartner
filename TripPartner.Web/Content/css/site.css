@@ -33,7 +33,7 @@ a{
 }
 
 .pager-btn-x:hover{
-    background-color: #eeeeff;
+    background-color: #ddddff;
 }
 
 .pager-btn-x.disabled{
@@ -70,6 +70,10 @@ a{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.small-trip-panel{
+    margin-bottom: 0;
 }
 #footer {
     position: absolute;
@@ -115,4 +119,7 @@ a{
         border-top-right-radius: 0;
     }
 
-    #map{width:500px; height: 400px; }
+#map {
+    width:500px;
+    height:400px
+}

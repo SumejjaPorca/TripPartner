@@ -1,4 +1,12 @@
 ﻿<div>
-    <p ng-if="message != ''">{{message}}</p>
-    <trips-grid title="Title" trips="Trips" ng-if="message == ''"></trips-grid>
+    <h1>{{Title}}</h1>
+
+    <div ng-if="message != ''" class="alert alert-danger">
+        <p>{{message}}</p>
+    </div>
+    <div class="col-sm-2-offset">
+        <a ui-sref="trips.add" class="btn btn-primary" ng-if="accMngr.getCurrentUser().IsLoggedIn">Add your own Trip</a>
+        <a ui-sref="trips.byLoc" class="btn btn-primary">Browse trips by locations</a>
+    </div>
+    <trips-grid trips="Trips" serial="Serial" ng-if="message == ''"></trips-grid>
 </div>

@@ -57,6 +57,13 @@ namespace TripPartner.WebAPI
             defaults: new { locId = RouteParameter.Optional },
             constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            config.Routes.MapHttpRoute(
+            name: "LatLngRoute",
+            routeTemplate: "api/Location/{lat}/{lng}/{controller}",
+            defaults: new { lat = RouteParameter.Optional, lng = RouteParameter.Optional },
+            constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }

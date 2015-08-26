@@ -49,6 +49,46 @@
             return deferred.promise;
         }
 
+        this.getByTripId = function (tripId) {
+            var stories = [];
+
+            var deferred = $q.defer();
+
+            $http.get('http://' + serverName + '/api/Trip/' + tripId + '/Story').then(function (response) {
+                var stories = response.data;
+                stories.forEach(function (story) {
+                    stories.push(new Story(story));
+                });
+                deferred.resolve(stories);
+            },
+                function (response) {
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
+        }
+
+        this.getByUserId = function (userId) {
+
+            var stories = [];
+
+            var deferred = $q.defer();
+
+            $http.get('http://' + serverName + '/api/User/' + userId + '/Story').then(function (response) {
+                var stories = response.data;
+                stories.forEach(function (story) {
+                    stories.push(new Story(story));
+                });
+                deferred.resolve(stories);
+            },
+                function (response) {
+                    deferred.reject(response);
+                });
+
+            return deferred.promise;
+        };
+
+
         this.AddNew = function (newStory) {
             var deferred = $q.defer();
 

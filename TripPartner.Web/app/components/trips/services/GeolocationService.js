@@ -35,6 +35,9 @@
                 pos = newPos;
                 marker.setPosition(new google.maps.LatLng(newPos.G, newPos.K));
             }
+            this.getPosition = function () {
+                return pos;
+            }
         }
 
         this.getLatLng = function (address) {

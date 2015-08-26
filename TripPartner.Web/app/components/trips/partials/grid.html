@@ -1,4 +1,9 @@
-﻿<div>
-    <p ng-if="message != ''">{{message}}</p>
-    <trips-grid title="Title" trips="Trips" ng-if="message == ''"></trips-grid>
+﻿
+<div>
+    <h3>{{Title}}</h3>
+    <div ng-if="message != ''" class="alert alert-danger">
+        <h4>Error</h4>
+        <p>{{message}}</p>
+    </div>
+    <trips-grid trips="Trips" serial="Serial" ng-if="message == ''"></trips-grid>
 </div>

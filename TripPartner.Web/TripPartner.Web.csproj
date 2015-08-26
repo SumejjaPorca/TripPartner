@@ -59,10 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\components\stories\controllers\addStoryCtrl.js" />
+    <Content Include="app\components\stories\controllers\storiesByTripCtrl.js" />
+    <Content Include="app\components\stories\controllers\storiesByUserCtrl.js" />
     <Content Include="app\components\stories\partials\add.html" />
-    <Content Include="shared\services\angular-google-maps.min.js.map">
-      <DependentUpon>angular-google-maps.min.js</DependentUpon>
-    </Content>
+    <Content Include="app\components\stories\partials\grid.html" />
+    <Content Include="app\components\trips\partials\tripsByLoc.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,7 +92,6 @@
     <Content Include="app\components\stories\directives\small-story.html" />
     <Content Include="app\components\stories\directives\stories-grid.html" />
     <Content Include="app\components\stories\directives\story-directive.html" />
-    <Content Include="app\components\stories\partials\all.html" />
     <Content Include="app\components\stories\partials\stories.html" />
     <Content Include="app\components\stories\partials\story-list.html" />
     <Content Include="app\components\stories\services\Story.js" />
@@ -129,11 +129,6 @@
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="shared\partials\error.html" />
-    <Content Include="shared\services\angular-google-maps.js" />
-    <Content Include="shared\services\angular-google-maps.min.js">
-      <DependentUpon>angular-google-maps.js</DependentUpon>
-    </Content>
-    <Content Include="shared\services\lodash.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

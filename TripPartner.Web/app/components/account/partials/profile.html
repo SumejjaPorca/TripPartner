@@ -1,4 +1,4 @@
-﻿<div class="panel panel-default" ng-if="message == ''">
+﻿<div class="panel panel-default center-block" ng-if="message == ''">
     <div class="panel-heading">User info</div>
     <div class="panel-body">
         <label class="col-lg-2 control-label">Username:</label>
@@ -9,6 +9,8 @@
         <div class="col-lg-10">
             <h4>{{User.Email}}</h4>
         </div>
-    </div>
+        <a ui-sref="trips.byUser({userId:User.Id})" class="btn btn-sm btn-primary">See All Trips</a>
+        <a ui-sref="stories.byUser({userId:User.Id})" class="btn btn-sm btn-primary">See All Stories</a>
+
 </div>
 <p ng-if="message != ''">{{message}}</p>

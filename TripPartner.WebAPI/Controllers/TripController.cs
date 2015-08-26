@@ -98,6 +98,28 @@ namespace TripPartner.WebAPI.Controllers
             return response;
         }
 
+        [Route("~/api/Location/{lat}/{lng}/Trip")]
+        [HttpGet]
+        [AllowAnonymous]
+        // GET api/Location/34.3/18.4/Trip
+        public IHttpActionResult GetByLatLng(double lat, double lng)
+        {
+            IHttpActionResult response;
+            HttpResponseMessage responseMsg;
+
+            try
+            {
+                List<TripVM> trips = _mngr.getByLatLng(lat, lng);
+                responseMsg = _helper.CreateCustomResponseMsg(trips, HttpStatusCode.OK);
+
+            }
+            catch (Exception e)
+            {
+                responseMsg = _errHelper.CreateCustomResponseMsg(new HttpError(e.Message), HttpStatusCode.BadRequest);
+            }
+            response = ResponseMessage(responseMsg);
+            return response;
+        }
 
 
         // POST api/Trip

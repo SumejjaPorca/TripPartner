@@ -69,6 +69,23 @@
             return deferred.promise;
         };
 
+        this.GetByLatLng = function (lat, lng) {
+            var deferred = $q.defer();
+            $http.get('http://' + serverName + '/api/Location/' + lat + '/' + lng + '/Trip').then(
+               function (response) {
+                   var trips = [];
+                   var data = response.data;
+                   data.forEach(function (trip) {
+                       trips.push(new Trip(trip));
+                   });
+                   deferred.resolve(trips);
+               }, function (response) {
+                   deferred.reject(response);
+               });
+
+            return deferred.promise;
+        }
+
         this.AddNew = function (newTrip) {
             var deferred = $q.defer();
 

@@ -12,9 +12,10 @@
                         templateUrl: '/app/components/stories/partials/stories.html'
                     })
                      .state('stories.all', {
-                         url: '/all',
-                         templateUrl: '/app/components/stories/partials/all.html',
+                         url: '/all?serial',
+                         templateUrl: '/app/components/stories/partials/grid.html',
                          controller: 'allStoriesCtrl',
+                         params:{ serial: undefined},
                          resolve: {
                              index: function () {
                                  return '';
@@ -28,12 +29,17 @@
                          controller: 'addStoryCtrl',
                          params: { tripId: null}
                      })
-
-                     .state('stories.all.details', {
-                         url: '/details/{serial}',
-                         templateUrl: '/app/components/stories/partials/story-list.html',
-                         controller: 'listCtrl',
-                         params: { stories: null, serial: null }
+                     .state('stories.byUser', {
+                         url: '/byUser/{userId}?serial',
+                         templateUrl: '/app/components/stories/partials/grid.html',
+                         controller: 'storiesByUserCtrl',
+                         params: { userId: null, serial: undefined }
+                     })
+                     .state('stories.byTrip', {
+                         url: '/byTrip/{tripId}?serial',
+                         templateUrl: '/app/components/stories/partials/grid.html',
+                         controller: 'storiesByTripCtrl',
+                         params: { userId: null, serial: undefined }
                      });
                     }])
                      .run(function () {
@@ -50,11 +56,14 @@
                             templateUrl: '/app/components/stories/directives/story-directive.html',
                             controller: function ($scope) {
                                $scope.Next = function () {
-                                    $scope.serial = $scope.serial + 1;
+                                   $scope.serial = $scope.serial + 1;
+                                   return true;
                                }
 
                                $scope.HasNext = function () {
-                                   return $scope.serial < $scope.trips.length - 1;
+                                   if ($scope.stories != undefined)
+                                       return $scope.serial < $scope.stories.length - 1;
+                                   else return false;
                                }
 
                                $scope.HasPrevious = function () {
@@ -62,7 +71,8 @@
                                }
 
                                 $scope.Previous = function () {
-                                   $scope.serial = $scope.serial - 1;
+                                    $scope.serial = $scope.serial - 1;
+                                    return true;
                                 }
                             }
 
@@ -80,9 +90,17 @@
                         return {
                             restrict: 'E',
                             scope: {
-                                stories: '='
+                                stories: '=',
+                                serial: '='
                             },
-                            templateUrl: '/app/components/stories/directives/stories-grid.html'
+                            templateUrl: '/app/components/stories/directives/stories-grid.html',
+                            controller: ['$scope', function ($scope) {
+                                $scope.isNumber = angular.isNumber($scope.serial) && $scope.serial >= 0;
+                                $scope.show = function (i) {
+                                    $scope.serial = i;
+                                    $scope.isNumber = angular.isNumber($scope.serial) && $scope.serial >= 0;
+                                }
+                            }]
 
                         };
                     });
