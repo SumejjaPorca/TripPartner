@@ -240,14 +240,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508180030025_new.cs" />
-    <Compile Include="Migrations\201508180030025_new.Designer.cs">
-      <DependentUpon>201508180030025_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508180035334_new2.cs" />
-    <Compile Include="Migrations\201508180035334_new2.Designer.cs">
-      <DependentUpon>201508180035334_new2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -337,14 +329,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508180030025_new.resx">
-      <DependentUpon>201508180030025_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508180035334_new2.resx">
-      <DependentUpon>201508180035334_new2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
