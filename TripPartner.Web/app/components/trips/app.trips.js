@@ -120,8 +120,8 @@
                                 trip: '='
                             },
                             templateUrl: '/app/components/trips/directives/trip-detail.html',
-                            controller: ['$scope', function ($scope) {
-                               
+                            controller: ['$scope', 'AccountManager', function ($scope, mngr) {
+                                $scope.mngr = mngr;
                                 }]
                         }
 

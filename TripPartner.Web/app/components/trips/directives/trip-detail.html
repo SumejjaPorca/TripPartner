@@ -17,6 +17,8 @@
             <small>Trip ended at: </small><br />{{trip.DateEnded | date:"d MMM yyyy"}}
         </p>
 
+        <a ui-sref="stories.byTrip({tripId: trip.Id})" class="btn btn-primary">See stories from this trip</a>
+        <a ui-sref="stories.add({tripId: trip.Id})" class="btn btn-primary" ng-if="mngr.getCurrentUser().Id == trip.CreatorId">Write a story from this trip</a>
 
     </div>
 </div>
