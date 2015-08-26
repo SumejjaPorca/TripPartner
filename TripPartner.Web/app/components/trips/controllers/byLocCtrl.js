@@ -4,6 +4,7 @@
 
         $scope.Serial = $stateParams.serial;
         $scope.message = "";
+        $scope.found = false; 
 
         var init = function () {
 
@@ -25,8 +26,10 @@
                 mngr.getByLocId($stateParams.locId).then(
                       function (response) {
                           $scope.Trips = response;
+                          $scope.found = true;
                           $scope.Title = "Trips around " + $scope.Loc.Address + ":";
                       }, function (response) {
+                          $scope.found = false;
                           $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
                       });
             }
@@ -60,6 +63,7 @@
         $scope.Find = function () {
             mngr.GetByLatLng($scope.Loc.Lat, $scope.Loc.Long).then(
                      function (response) {
+                         $scope.found = true;
                          var num = response.length - $scope.Trips.length;
                          if (num > 0) {
                              for (var i = 0; i < $scope.Trips.length; i++) {
@@ -79,7 +83,7 @@
                          }
                          $scope.Title = "Trips around " + $scope.Loc.Address + ":";
                      }, function (response) {
-                         $scope.Loc.Id = undefined;
+                         $scope.found = false;
                          $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
                      });
         }

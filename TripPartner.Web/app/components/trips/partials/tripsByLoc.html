@@ -17,5 +17,5 @@
         <h4>Error</h4>
         <p>{{message}}</p>
     </div>
-    <trips-grid trips="Trips" serial="Serial" ng-if="message == '' && $scope.Loc.Id != undefined"></trips-grid>
+    <trips-grid trips="Trips" serial="Serial" ng-if="message == '' && found"></trips-grid>
 </div>
