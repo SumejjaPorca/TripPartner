@@ -45,7 +45,7 @@ namespace TripPartner.WebAPI.Migrations
                 trip3);
 
             context.Stories.AddOrUpdate(
-                new Story { CreatorId = id, Date = DateTime.Now, DateMade = DateTime.Now, LastEdit = DateTime.Now, Rates = 0, Rating = 0, Text = text1, Title = "Story about wonderful time in London", Trip = trip1 },
+                new Story { CreatorId = id, Date = DateTime.Now, DateMade = DateTime.Now, LastEdit = DateTime.Now, Rates = 0, Rating = 0, Text = text1, Title = "Super time in London", Trip = trip1 },
                 new Story { CreatorId = id, Date = DateTime.Now, DateMade = DateTime.Now, LastEdit = DateTime.Now, Rates = 1, Rating = 10, Text = text2, Trip = trip2, Title = "Crazy party time" },
                 new Story { CreatorId = id, Date = DateTime.Now, DateMade = DateTime.Now, LastEdit = DateTime.Now, Rates = 1, Rating = 10, Text = text2, Trip = trip3, Title = "Awesome tour in Europe" },
                 new Story { CreatorId = id, Date = DateTime.Now, DateMade = DateTime.Now, LastEdit = DateTime.Now, Rates = 0, Rating = 0, Text = text1, Title = "Story about love", Trip = trip1 },

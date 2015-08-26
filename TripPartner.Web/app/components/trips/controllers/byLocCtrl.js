@@ -25,9 +25,15 @@
                 });
                 mngr.getByLocId($stateParams.locId).then(
                       function (response) {
-                          $scope.Trips = response;
-                          $scope.found = true;
                           $scope.Title = "Trips around " + $scope.Loc.Address + ":";
+                          if (response.length == 0)
+                              $scope.message = "No trips found.";
+                              
+                          else {
+
+                              $scope.Trips = response;
+                              $scope.found = true;
+                          }
                       }, function (response) {
                           $scope.found = false;
                           $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
@@ -63,25 +69,29 @@
         $scope.Find = function () {
             mngr.GetByLatLng($scope.Loc.Lat, $scope.Loc.Long).then(
                      function (response) {
-                         $scope.found = true;
-                         var num = response.length - $scope.Trips.length;
-                         if (num > 0) {
-                             for (var i = 0; i < $scope.Trips.length; i++) {
-                                 $scope.Trips[i] = response[i];
-                             }
-                             for (var i = $scope.Trips.length; i < response.length; i++)
-                                 $scope.Trips.push(response[i]);
-                         }
-                         else if (num == 0)
-                             for (var i = 0; i < response.length; i++)
-                                 $scope.Trips[i] = response[i];
-                         else
-                         {
-                             for(var i = 0; i < response.length; i++)
-                                 $scope.Trips[i] = response[i];
-                             $scope.Trips.splice(response.length, $scope.Trips.length - response.length);
-                         }
+
                          $scope.Title = "Trips around " + $scope.Loc.Address + ":";
+                         if (response.length == 0)
+                             $scope.message = "No trips found.";
+                         else {
+                             $scope.found = true;
+                             var num = response.length - $scope.Trips.length;
+                             if (num > 0) {
+                                 for (var i = 0; i < $scope.Trips.length; i++) {
+                                     $scope.Trips[i] = response[i];
+                                 }
+                                 for (var i = $scope.Trips.length; i < response.length; i++)
+                                     $scope.Trips.push(response[i]);
+                             }
+                             else if (num == 0)
+                                 for (var i = 0; i < response.length; i++)
+                                     $scope.Trips[i] = response[i];
+                             else {
+                                 for (var i = 0; i < response.length; i++)
+                                     $scope.Trips[i] = response[i];
+                                 $scope.Trips.splice(response.length, $scope.Trips.length - response.length);
+                             }
+                         }
                      }, function (response) {
                          $scope.found = false;
                          $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
