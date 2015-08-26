@@ -72,7 +72,8 @@
                             restrict: 'E',
                             scope: {
                                 trips: '=',
-                                serial: '='
+                                serial: '=',
+                                small: '='
                             },
                             templateUrl: '/app/components/trips/directives/trips-grid.html',
                             controller: ['$scope', function ($scope) {

@@ -5,8 +5,8 @@
         <trips-list trips="trips" serial="serial"></trips-list>
     </div>
 
-        <div class="col-md-4" ng-repeat="trip in trips">
-            <small-trip trip="trip"></small-trip>
-            <div ng-click="show($index)" class="btn btn-block btn-primary">Details</div>
-        </div>
+    <div ng-class="{'col-md-4':!small, 'col-md-12':small}" ng-repeat="trip in trips">
+        <small-trip trip="trip"></small-trip>
+        <div ng-click="show($index)" class="btn btn-block btn-primary">Details</div>
+    </div>
 </div>
