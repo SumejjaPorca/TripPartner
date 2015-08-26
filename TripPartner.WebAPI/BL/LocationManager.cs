@@ -60,10 +60,21 @@ namespace TripPartner.WebAPI.BL
         {
             return _db.Locations.Count(l => 1 == 1);
         }
-        public Location getByLatLng(NewLocVM loc)
+        private Location getByLatLng(NewLocVM loc)
         {
             return _db.Locations.FirstOrDefault(l => l.LatLng.Latitude == loc.Lat && l.LatLng.Longitude == loc.Long);
         }
+
+        public List<LocationVM> getNearest(double lat, double lng) {
+            DbGeography point = CreatePoint(lat, lng);
+            return _db.Locations.Where(l => l.LatLng.Distance(point) < 10000).Select(l => new LocationVM {
+                Id = l.Id,
+                Address = l.Address,
+                Lat = l.LatLng.Latitude.Value,
+                Long = l.LatLng.Longitude.Value
+            }).ToList();
+        }
+
         public DbGeography CreatePoint(double latitude, double longitude)
         {
             var text = string.Format(CultureInfo.InvariantCulture.NumberFormat, "POINT({0} {1})", longitude, latitude);

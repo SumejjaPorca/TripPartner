@@ -18,6 +18,7 @@
                      })
                     .controller("homeCtrl", ['$scope', 'StoryManager', function ($scope, mngr) {
                         $scope.Serial = 0;
+                        $scope.Stories = [];
 
                         var init = function () {
                             mngr.getTopStories().then(function (response) {

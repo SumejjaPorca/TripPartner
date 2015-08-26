@@ -123,3 +123,8 @@ a{
     /*width:500px;*/
     height:400px
 }
+
+.btn> a{
+    color: inherit;
+    text-decoration: none;
+}

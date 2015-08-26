@@ -49,6 +49,8 @@
                     $scope.destMarker.changePosition(response);
                     $scope.newTrip.Destination.Lat = response.G;
                     $scope.newTrip.Destination.Long = response.K;
+
+                    $scope.map.panTo($scope.destMarker.getPosition());
             });
         }
         $scope.OriginChanged = function () {
@@ -57,6 +59,7 @@
                     $scope.originMarker.changePosition(response);
                     $scope.newTrip.Origin.Lat = response.G;
                     $scope.newTrip.Origin.Long = response.K;
+                    $scope.map.panTo($scope.originMarker.getPosition());
                 });
         }
 

@@ -33,6 +33,8 @@ namespace TripPartner.WebAPI.BL
                         select new TripVM
                         {
                             Id = t.Id,
+                            DateEnded = t.DateEnded,
+                            DateStarted = t.DateStarted,
                             Destination = new LocationVM
                             {
                                 Id = d.Id,
@@ -112,7 +114,7 @@ namespace TripPartner.WebAPI.BL
                                           Long = t.Origin.LatLng.Longitude.Value
                                       },
                                       Id = t.Id
-                                 }).ToList();
+                                 }).Distinct().ToList();
                 
             return trips;
         }
@@ -193,13 +195,13 @@ namespace TripPartner.WebAPI.BL
 
         public List<TripVM> getByLatLng(double lat, double lng)
         {
-            Location loc = _mngr.getByLatLng(new NewLocVM{
-                                 Lat=lat, Long=lng});
-            if (loc == null)
+            List<LocationVM> locs = _mngr.getNearest(lat, lng);
+            List<int> ids = locs.Select(l => l.Id).ToList();
+            if (locs == null)
                 return new List<TripVM>();
           
 
-            var trips = _db.Trips.Where(t => t.DestinationId == loc.Id || t.OriginId == loc.Id)
+            var trips = _db.Trips.Where(t => ids.Contains(t.DestinationId.Value) || ids.Contains(t.OriginId.Value))
                                 .Include(t => t.Creator)
                                 .Include(t => t.Destination)
                                 .Include(t => t.Origin)
@@ -222,7 +224,7 @@ namespace TripPartner.WebAPI.BL
                                         Long = t.Origin.LatLng.Longitude.Value
                                     },
                                     Id = t.Id
-                                }).ToList();
+                                }).Distinct().ToList();
 
             return trips;
         }

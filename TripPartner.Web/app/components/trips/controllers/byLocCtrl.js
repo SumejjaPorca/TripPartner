@@ -36,7 +36,8 @@
                           }
                       }, function (response) {
                           $scope.found = false;
-                          $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
+                          $scope.message = "";
+                          $scope.message = "Trips around " + $scope.Loc.Address + " were not found."
                       });
             }
             else
@@ -54,7 +55,8 @@
             };
             $scope.map = geoService.instantiateMap("map", mapProp);
             $scope.Marker = new geoService.Marker($scope.map, { lat: $scope.Loc.Lat, lng: $scope.Loc.Long });
-          
+
+            $scope.map.panTo($scope.Marker.getPosition());
         }
 
         $scope.LocationChanged = function () {
@@ -63,6 +65,7 @@
                     $scope.Marker.changePosition(response);
                     $scope.Loc.Lat = response.G;
                     $scope.Loc.Long = response.K;
+                    $scope.map.panTo($scope.Marker.getPosition());
                    
                 });
         }
@@ -75,6 +78,7 @@
                              $scope.message = "No trips found.";
                          else {
                              $scope.found = true;
+                             $scope.message = "";
                              var num = response.length - $scope.Trips.length;
                              if (num > 0) {
                                  for (var i = 0; i < $scope.Trips.length; i++) {
@@ -94,7 +98,7 @@
                          }
                      }, function (response) {
                          $scope.found = false;
-                         $scope.message = "Trips around " + $scope.Loc.Address + "were not found."
+                         $scope.message = "Trips around " + $scope.Loc.Address + " were not found."
                      });
         }
 
