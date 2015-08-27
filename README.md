@@ -26,7 +26,8 @@ Zatim pratite sljedeće korake:
 5. Otvorite Package Manager Console 
 	5.1. Odaberite Target Project TripPartner.WebAPI
 	5.2. Ukucajte sljedeće komande: 
-	      enable-migrations
+
+              enable-migrations
               add-migration new
               update-database
 
