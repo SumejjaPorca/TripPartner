@@ -20,7 +20,7 @@
                         $scope.Serial = 0;
                         $scope.Stories = [];
                         var init = function () {
-                            mngr.getTopStories().then(function (response) {
+                            mngr.getAll('Rating').then(function (response) {
                                 angular.copy(response, $scope.Stories);
                                 if ($scope.Stories != undefined)
                                     $scope.Serial = Math.floor($scope.Stories.length / 2);
