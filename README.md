@@ -12,10 +12,11 @@ Zatim pratite sljedeće korake:
 2. Otvorite TripPartner solution u Visual Studiu
 	2.1 Tools > Add SQL Server (Odaberite instancu servera koju ste napravili)
 	2.2 View > SQL Server Object Explorer
+              
                 2.2.1 Odaberite instancu servera koju ste napravili u koraku 1.
-		2.2.2. Desni click na Databeses > Add New Database
-			2.2.2.1. Napravite bazu "TripPartner"
-		2.2.3 Desni click na TripPartner bazu > Properties
+                2.2.2. Desni click na Databeses > Add New Database
+                        2.2.2.1. Napravite bazu "TripPartner"
+                        2.2.3 Desni click na TripPartner bazu > Properties
                         2.2.3.1 Kopirajte ConnectionString baze
 
 3. Otvorite projekat TripPartner.WebAPI i file web.config
