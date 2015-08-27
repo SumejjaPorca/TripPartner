@@ -2,6 +2,7 @@
 
     tripModule.controller('allTripsCtrl', ['$scope', 'TripManager', 'AccountManager', '$stateParams', function ($scope, mngr, accMngr, $stateParams) {
 
+        $scope.Trips = [];
 
         var init = function () {
 
@@ -18,7 +19,7 @@
 
             mngr.getAll().then(
                   function (response) {
-                      $scope.Trips = response;
+                      angular.copy(response, $scope.Trips);
                       $scope.Title = "Trips";
                   }, function (response) {
                       $scope.message = "Trips were not found."

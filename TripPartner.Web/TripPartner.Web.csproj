@@ -102,8 +102,6 @@
     <Content Include="app\components\trips\controllers\byLocCtrl.js" />
     <Content Include="app\components\trips\controllers\byUserCtrl.js" />
     <Content Include="app\components\trips\controllers\tripDetailCtrl.js" />
-    <Content Include="app\components\trips\controllers\tripsByLocListCtrl.js" />
-    <Content Include="app\components\trips\controllers\tripsByUserListCtrl.js" />
     <Content Include="app\components\trips\directives\small-trip.html" />
     <Content Include="app\components\trips\directives\trip-detail.html" />
     <Content Include="app\components\trips\directives\trips-grid.html" />

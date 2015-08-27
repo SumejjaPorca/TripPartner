@@ -18,18 +18,16 @@
                      })
                     .controller("homeCtrl", ['$scope', 'StoryManager', function ($scope, mngr) {
                         $scope.Serial = 0;
+                        $scope.Stories = [];
                         var init = function () {
                             mngr.getTopStories().then(function (response) {
-                                $scope.Stories = response;
+                                angular.copy(response, $scope.Stories);
                                 if ($scope.Stories != undefined)
-                                    $scope.Serial = $scope.Stories.length / 2;
+                                    $scope.Serial = Math.floor($scope.Stories.length / 2);
                                 else
-                                    $scope.Stories = [];
+                                    angular.copy([], $scope.Stories);
                             });
-
-
                         };
-
                         init();
                     }]);
 
