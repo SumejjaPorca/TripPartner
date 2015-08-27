@@ -4,7 +4,8 @@
 
         $scope.Serial = $stateParams.serial;
         $scope.message = "";
-        $scope.found = false; 
+        $scope.found = false;
+        $scope.Trips = [];
 
         var init = function () {
 
@@ -31,7 +32,7 @@
                               
                           else {
 
-                              $scope.Trips = response;
+                              angular.copy(response, $scope.Trips);
                               $scope.found = true;
                           }
                       }, function (response) {
@@ -41,7 +42,7 @@
                       });
             }
             else
-                $scope.Trips = [];
+                angular.copy([], $scope.Trips);
             
         }
 
@@ -79,22 +80,7 @@
                          else {
                              $scope.found = true;
                              $scope.message = "";
-                             var num = response.length - $scope.Trips.length;
-                             if (num > 0) {
-                                 for (var i = 0; i < $scope.Trips.length; i++) {
-                                     $scope.Trips[i] = response[i];
-                                 }
-                                 for (var i = $scope.Trips.length; i < response.length; i++)
-                                     $scope.Trips.push(response[i]);
-                             }
-                             else if (num == 0)
-                                 for (var i = 0; i < response.length; i++)
-                                     $scope.Trips[i] = response[i];
-                             else {
-                                 for (var i = 0; i < response.length; i++)
-                                     $scope.Trips[i] = response[i];
-                                 $scope.Trips.splice(response.length, $scope.Trips.length - response.length);
-                             }
+                             angular.copy(response, $scope.Trips);
                          }
                      }, function (response) {
                          $scope.found = false;
