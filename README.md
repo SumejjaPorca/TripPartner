@@ -9,13 +9,14 @@ Zatim pratite sljedeće korake:
 
 1. Napravite instancu  SQL servera sa određenim nazivom 
 2. Otvorite TripPartner solution u Visual Studiu
-	2.1 Tools > Add SQL Server (Odaberite instancu servera koju ste 	napravili)
+	2.1 Tools > Add SQL Server (Odaberite instancu servera koju ste napravili)
 	2.2 View > SQL Server Object Explorer
-		2.2.1 Odaberite instancu servera koju ste napravili u koraku 1.
+		
+                2.2.1 Odaberite instancu servera koju ste napravili u koraku 1.
 		2.2.2. Desni click na Databeses > Add New Database
 			2.2.2.1. Napravite bazu "TripPartner"
 		2.2.3 Desni click na TripPartner bazu > Properties
-				2.2.3.1 Kopirajte ConnectionString baze
+                        2.2.3.1 Kopirajte ConnectionString baze
 3. Otvorite projekat TripPartner.WebAPI i file web.config
 4. Pronađite tag "connectionStrings" i u connectionString unesite kopirani connectionString baze
 5. Otvorite Package Manager Console 
