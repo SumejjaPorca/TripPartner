@@ -1,68 +1,68 @@
 ﻿
-<div class="row">
-    <form class="form-horizontal" role="form" name="newTripForm" ng-submit="newTripForm.$valid && submit()">
-        <fieldset>
-            <legend>Add New Trip</legend>
+<div class="container-fluid">
+    <h3>Add New Trip</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form" name="newTripForm" ng-submit="newTripForm.$valid && submit()">
+                <fieldset>
 
-            <div class="form-group">
-                <div class="col-md-2">
-                    <label for="date-started">The trip started:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" id="input-date-started" data-ng-model="newTrip.DateStarted" required>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="date-started" class="col-md-3 control-label">The trip started:</label>
 
-            <div class="form-group">
-                <div class="col-md-2">
-                    <label for="date-ended">The trip ended:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" class="form-control" id="input-date-ended" data-ng-model="newTrip.DateEnded" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-2">
-                    <label for="origin">From:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="input-origin" data-ng-model="newTrip.Origin.Address" ng-change="OriginChanged()" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-2">
-                    <label for="destination">To:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="input-destination" data-ng-model="newTrip.Destination.Address" ng-change="DestinationChanged()" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class=" col-md-6">
-                    <div data-ng-hide="message == ''" data-ng-class="(ok) ? 'alert alert-success' : 'alert alert-danger'">
-                        {{message}}
+                        <div class="col-md-9">
+                            <input type="date" class="form-control" id="input-date-started" data-ng-model="newTrip.DateStarted" required>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="date-ended" class="col-md-3 control-label">The trip ended:</label>
+                        <div class="col-md-9">
+                            <input type="date" class="form-control" id="input-date-ended" data-ng-model="newTrip.DateEnded" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origin" class="col-md-3 control-label">From:</label>
+
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="input-origin" data-ng-model="newTrip.Origin.Address" ng-change="OriginChanged()" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination" class="col-md-3 control-label">To:</label>
+
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="input-destination" data-ng-model="newTrip.Destination.Address" ng-change="DestinationChanged()" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-6">
+                            <button type="reset" class="btn btn-warning col-md-6">Cancel</button>
+                            <button type="submit" class="btn btn-primary col-md-6">Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class=" col-md-12">
+                            <div data-ng-hide="!message" data-ng-class="(ok) ? 'alert alert-success' : 'alert alert-danger'">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div id="map" class="col-md-12"></div>
             </div>
-
-
-
-
-        </fieldset>
-    </form>
-
-    <div class="col-md-6">
-        <div id="map"></div>
+        </div>
     </div>
+
+
 
 </div>

@@ -1,6 +1,12 @@
 ﻿
+<div ng-if="trips.length == 0">
+    <h3></h3><h3>There's no any stories yet :(</h3>
+    <h4>Feel free to add your trip and write story</h4>
+    <button class="btn btn-primary btn-block"><a ui-sref="trips.add">Add Trip &#x2b;</a></button>
+</div>
 
-<div>
+<div ng-if="trips.length > 0">
+
     <div ng-if="isNumber">
         <trips-list trips="trips" serial="serial"></trips-list>
     </div>

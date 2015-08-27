@@ -8,5 +8,6 @@
         <a ui-sref="trips.add" class="btn btn-primary" ng-if="accMngr.getCurrentUser().IsLoggedIn">Add your own Trip</a>
         <a ui-sref="trips.byLoc" class="btn btn-primary">Browse trips by locations</a>
     </div>
+    <hr />
     <trips-grid trips="Trips" serial="Serial" ng-if="message == ''"></trips-grid>
 </div>

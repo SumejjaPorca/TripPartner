@@ -6,7 +6,7 @@
             <div ng-if="stories.length == 0">
                 <h3>There's no any stories yet :(</h3>
                 <h4>Feel free to add your trip and write story</h4>
-                <button class="btn btn-primary btn-block"><a ui-sref="trips.add">Add Trip <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></button>
+                <button class="btn btn-primary btn-block"><a ui-sref="trips.add">Add Trip &#x2b;</a></button>
             </div>
             <div ng-if="stories.length > 0" id="story-panel" class="panel panel-primary">
                 <div class="panel-heading panel-heading-lg-x">{{stories[serial].Title}} <br /><small>Posted on: {{stories[serial].DateMade | date:"d MMM yyyy"}}</small></div>
