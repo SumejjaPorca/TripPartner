@@ -86,7 +86,9 @@ namespace TripPartner.WebAPI.BL
                                 Long = o.LatLng.Longitude.Value
                             },
                             CreatorId = id,
-                            CreatorUsername = user.UserName
+                            CreatorUsername = user.UserName,
+                            DateEnded = t.DateEnded,
+                            DateStarted = t.DateStarted
                         };
 
             return query.ToList();
@@ -134,7 +136,7 @@ namespace TripPartner.WebAPI.BL
                    DateEnded = trip.DateEnded,
                    DateStarted = trip.DateStarted,
                    DestinationId = dest.Id,
-                   OriginId = origin.Id,
+                   OriginId = origin.Id                    
                });
 
             _db.SaveChanges();

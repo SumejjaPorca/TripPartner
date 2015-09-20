@@ -221,10 +221,10 @@
     <Compile Include="Binding_Models\NewStoryVM.cs" />
     <Compile Include="Binding_Models\NewTripVM.cs" />
     <Compile Include="Binding_Models\UserInfoVM.cs" />
-    <Compile Include="BL\LocationManager.cs" />
-    <Compile Include="BL\StoryManager.cs" />
-    <Compile Include="BL\TripManager.cs" />
-    <Compile Include="BL\UserManager.cs" />
+    <Compile Include="Controllers\BL\LocationManager.cs" />
+    <Compile Include="Controllers\BL\StoryManager.cs" />
+    <Compile Include="Controllers\BL\TripManager.cs" />
+    <Compile Include="Controllers\BL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
@@ -255,8 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-google-maps-street-view.js" />
@@ -266,12 +264,6 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\components\account\app.account.js" />
-    <Content Include="Scripts\app\components\account\controllers\loginCtrl.js" />
-    <Content Include="Scripts\app\components\account\controllers\registerCtrl.js" />
-    <Content Include="Scripts\app\components\home\app.home.js" />
-    <Content Include="Scripts\app\components\stories\app.stories.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -315,13 +307,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\components\account\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

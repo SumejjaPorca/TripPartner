@@ -1,8 +1,11 @@
-﻿
-<div ng-if="trips.length == 0">
-    <h3></h3><h3>There's no any stories yet :(</h3>
-    <h4>Feel free to add your trip and write story</h4>
-    <button class="btn btn-primary btn-block"><a ui-sref="trips.add">Add Trip &#x2b;</a></button>
+﻿<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div ng-if="trips.length == 0">
+            <h3></h3><h3>There's no any trips yet :(</h3>
+            <h4>Feel free to add your trip!</h4>
+            <button class="btn btn-primary btn-block"><a ui-sref="trips.add">Add Trip &#x2b;</a></button>
+        </div>
+    </div>
 </div>
 
 <div ng-if="trips.length > 0">

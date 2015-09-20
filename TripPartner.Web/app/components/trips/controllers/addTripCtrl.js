@@ -47,8 +47,8 @@
             geoService.getLatLng($scope.newTrip.Destination.Address).then(
                 function (response) {
                     $scope.destMarker.changePosition(response);
-                    $scope.newTrip.Destination.Lat = response.G;
-                    $scope.newTrip.Destination.Long = response.K;
+                    $scope.newTrip.Destination.Lat = response.H;
+                    $scope.newTrip.Destination.Long = response.L;
 
                     $scope.map.panTo($scope.destMarker.getPosition());
             });
@@ -57,8 +57,8 @@
             geoService.getLatLng($scope.newTrip.Origin.Address).then(
                 function (response) {
                     $scope.originMarker.changePosition(response);
-                    $scope.newTrip.Origin.Lat = response.G;
-                    $scope.newTrip.Origin.Long = response.K;
+                    $scope.newTrip.Origin.Lat = response.H;
+                    $scope.newTrip.Origin.Long = response.L;
                     $scope.map.panTo($scope.originMarker.getPosition());
                 });
         }

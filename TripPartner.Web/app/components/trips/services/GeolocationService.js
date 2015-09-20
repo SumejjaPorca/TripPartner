@@ -33,7 +33,8 @@
             }
             this.changePosition = function(newPos){
                 pos = newPos;
-                marker.setPosition(new google.maps.LatLng(newPos.G, newPos.K));
+                marker.setPosition(new google.maps.LatLng(newPos.H, newPos.L));
+                marker.setMap(map);
             }
             this.getPosition = function () {
                 return pos;
