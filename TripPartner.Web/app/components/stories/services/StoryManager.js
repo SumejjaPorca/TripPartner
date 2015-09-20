@@ -35,8 +35,8 @@
             var deferred = $q.defer();
 
             $http.get('http://' + serverName + '/api/Trip/' + tripId + '/Story').then(function (response) {
-                var stories = response.data;
-                stories.forEach(function (story) {
+                var data = response.data;
+                data.forEach(function (story) {
                     stories.push(new Story(story));
                 });
                 deferred.resolve(stories);
@@ -55,8 +55,8 @@
             var deferred = $q.defer();
 
             $http.get('http://' + serverName + '/api/User/' + userId + '/Story').then(function (response) {
-                var stories = response.data;
-                stories.forEach(function (story) {
+                var data = response.data;
+                data.forEach(function (story) {
                     stories.push(new Story(story));
                 });
                 deferred.resolve(stories);
